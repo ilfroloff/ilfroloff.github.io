@@ -1,0 +1,34 @@
+{
+  "name": "curved-conjunction",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "astro": "3.2.2"
+  },
+  "devDependencies": {
+    "@typescript-eslint/parser": "6.7.4",
+    "eslint": "8.50.0",
+    "eslint-config-prettier": "9.0.0",
+    "eslint-plugin-astro": "0.29.1",
+    "eslint-plugin-jsx-a11y": "6.7.1",
+    "eslint-plugin-prettier": "5.0.0",
+    "husky": "8.0.3",
+    "lint-staged": "14.0.1",
+    "prettier": "3.0.3",
+    "prettier-plugin-astro": "0.12.0"
+  },
+  "lint-staged": {
+    "*.{js,mjs,astro}": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
+}
