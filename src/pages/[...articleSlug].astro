@@ -1,0 +1,27 @@
+---
+import { getCollection } from "astro:content";
+import type { InferGetStaticPropsType, GetStaticPaths } from "astro";
+
+export const getStaticPaths = (async () => {
+  const allArticles = await getCollection("articles");
+  const sorted = allArticles.sort(
+    (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
+  );
+
+  return sorted.map((article) => ({
+    params: {
+      articleSlug: article.slug,
+    },
+    props: {
+      article: article,
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { article } = Astro.props as Props;
+const { Content } = await article.render();
+---
+
+<Content />

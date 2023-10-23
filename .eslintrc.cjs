@@ -1,11 +1,18 @@
 module.exports = {
-  extends: ["plugin:astro/recommended", "plugin:prettier/recommended"],
+  extends: ["plugin:prettier/recommended", "plugin:astro/recommended"],
   overrides: [
     {
       files: ["**/*.mjs"],
       parserOptions: {
         sourceType: "module",
-        ecmaVersion: 2015,
+        ecmaVersion: 2020,
+      },
+    },
+    {
+      files: ["**/*.cjs"],
+      parserOptions: {
+        sourceType: "script",
+        ecmaVersion: 2020,
       },
     },
     {
@@ -16,5 +23,20 @@ module.exports = {
         extraFileExtensions: [".astro"],
       },
     },
+    {
+      extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+      files: ["**/*.{ts,tsx}"],
+      parser: "@typescript-eslint/parser",
+      plugins: ["@typescript-eslint"],
+    },
+    {
+      files: ["src/env.d.ts"],
+      rules: {
+        "@typescript-eslint/triple-slash-reference": "off",
+      },
+    },
   ],
+  rules: {
+    "@typescript-eslint/consistent-type-imports": "error",
+  },
 };

@@ -1,0 +1,30 @@
+---
+import { getCollection } from "astro:content";
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import Layout from "src/layouts/Layout.astro";
+import ArticleBrief from "src/components/ArticleBrief.astro";
+
+export const getStaticPaths = (async () => {
+  const allArticles = await getCollection("articles");
+  const tags: Array<string> = allArticles.flatMap(
+    (item) => item.data.tags ?? [],
+  );
+
+  return tags.map((tag) => ({
+    params: {
+      tag,
+    },
+    props: {
+      articles: allArticles.filter((item) => item.data.tags.includes(tag)),
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+interface Props extends InferGetStaticPropsType<typeof getStaticPaths> {}
+
+const { tag, articles } = Astro.props;
+---
+
+<Layout title={tag}>
+  {articles.map((article) => <ArticleBrief article={article} />)}
+</Layout>
