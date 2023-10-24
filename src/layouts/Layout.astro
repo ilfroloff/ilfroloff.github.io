@@ -7,6 +7,7 @@ interface Props {
 }
 
 const { title } = Astro.props;
+const GA_MEASUREMENT_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 ---
 
 <!doctype html>
@@ -38,6 +39,26 @@ const { title } = Astro.props;
 </html>
 
 <style is:global></style>
+
+{
+  GA_MEASUREMENT_ID && (
+    <script
+      async
+      src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+    />
+  )
+}
+<script is:inline>
+  if (GA_MEASUREMENT_ID) {
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-J9GB6Q63PK");
+  }
+</script>
 
 <script is:inline>
   (() => {
