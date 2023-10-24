@@ -7,5 +7,7 @@ const allArticles = await getCollection("articles");
 ---
 
 <Layout title="Welcome to Astro.">
-  {allArticles.map((article) => <ArticleBrief article={article} />)}
+  <section class="flex flex-col gap-12">
+    {allArticles.map((article) => <ArticleBrief article={article} />)}
+  </section>
 </Layout>

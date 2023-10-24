@@ -1,3 +1,4 @@
+import defaultTheme from "tailwindcss/defaultTheme";
 import typographyPlugin from "@tailwindcss/typography";
 
 /** @type {import('tailwindcss').Config} */
@@ -9,6 +10,10 @@ export default {
     container: {
       center: true,
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['"Fira Code Variable"', ...defaultTheme.fontFamily.sans],
+      },
+    },
   },
 };

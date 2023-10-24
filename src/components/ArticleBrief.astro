@@ -11,16 +11,13 @@ const { article } = Astro.props;
 const { title, brief, publishedAt, tags } = article.data;
 ---
 
-<article class="flex gap-6">
-  <img src="http://placekitten.com/400/300" />
-  <div class="flex flex-col my-6">
-    <a href={article.slug} class="flex flex-col flex-1 gap-3">
-      <h1 class="text-3xl font-bold">{title}</h1>
-      <time class="text-xs text-gray-400"
-        >{format(new Date(publishedAt), "yyyy-MM-dd")}</time
-      >
-      <div class="text-sm justify-end">{brief}</div>
-    </a>
-    <ArticleTags tags={tags} />
-  </div>
+<article class="flex flex-col gap-3">
+  <a href={article.slug} class="flex flex-col flex-1 gap-3">
+    <h1 class="text-3xl font-bold">{title}</h1>
+    <time class="text-xs text-gray-400"
+      >{format(new Date(publishedAt), "yyyy-MM-dd")}</time
+    >
+    <div class="text-sm justify-end">{brief}</div>
+  </a>
+  <ArticleTags tags={tags} />
 </article>

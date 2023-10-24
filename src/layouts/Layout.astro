@@ -1,4 +1,5 @@
 ---
+import "@fontsource-variable/fira-code";
 import Logo from "src/components/Logo.astro";
 import ThemeToggle from "src/components/solid/ThemeToggle";
 
@@ -18,15 +19,34 @@ const GA_MEASUREMENT_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
     <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
   </head>
-  <body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-[#E9EDDE]">
-    <header class="bg-[#159957] dark:bg-[#003000] px-6 py-3 md:px-32 lg:px-64">
+  <body class="bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-[#E9EDDE]">
+    <header class="container px-12 py-3 lg:px-56">
       <nav class="flex items-center justify-between mx-auto">
         <div class="flex flex-1 justify-start">
           <a href="/">
             <Logo />
           </a>
         </div>
-        <div class="flex"></div>
+        <div class="flex">
+          <!--bg-[#159957] dark:bg-[#003000]-->
+          <!--<HeaderLink href="/articles">-->
+          <!--  <svg-->
+          <!--    xmlns="http://www.w3.org/2000/svg"-->
+          <!--    fill="none"-->
+          <!--    viewBox="0 0 24 24"-->
+          <!--    stroke-width="1.5"-->
+          <!--    stroke="currentColor"-->
+          <!--    class="mr-[6px] w-6 h-6"-->
+          <!--  >-->
+          <!--    <path-->
+          <!--      stroke-linecap="round"-->
+          <!--      stroke-linejoin="round"-->
+          <!--      d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z"-->
+          <!--    ></path>-->
+          <!--  </svg>-->
+          <!--  <span>Articles</span>-->
+          <!--</HeaderLink>-->
+        </div>
         <div class="flex flex-1 justify-end">
           <ThemeToggle client:load />
         </div>

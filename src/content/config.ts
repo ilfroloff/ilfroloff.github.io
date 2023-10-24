@@ -5,6 +5,7 @@ export interface ArticleData {
   slug: string;
   publishedAt: Date;
   briefing: string;
+  thumbnail?: string;
   tags?: Array<string>;
 }
 

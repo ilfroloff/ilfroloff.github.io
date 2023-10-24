@@ -22,9 +22,13 @@ export const getStaticPaths = (async () => {
 
 interface Props extends InferGetStaticPropsType<typeof getStaticPaths> {}
 
-const { tag, articles } = Astro.props;
+const { articles } = Astro.props;
+const { tag } = Astro.params;
 ---
 
 <Layout title={tag}>
-  {articles.map((article) => <ArticleBrief article={article} />)}
+  <h1 class="text-2xl">Articles for: #{tag}</h1>
+  <section class="mt-6">
+    {articles.map((article) => <ArticleBrief article={article} />)}
+  </section>
 </Layout>

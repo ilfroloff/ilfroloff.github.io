@@ -10,4 +10,11 @@ export default defineConfig({
       include: ["**/solid/**/*"],
     }),
   ],
+  markdown: {
+    gfm: false,
+    shikiConfig: {
+      theme: "monokai",
+      wrap: true,
+    },
+  },
 });
