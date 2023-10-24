@@ -19,7 +19,7 @@ jobs:
       - name: Install, build, and upload your site
         uses: withastro/action@v1
         env:
-          PUBLIC_GA_MEASUREMENT_ID: G-J9GB6Q63PK
+          PUBLIC_GA_MEASUREMENT_ID: ${{ vars.PUBLIC_GA_MEASUREMENT_ID }}
 
   deploy:
     needs: build
