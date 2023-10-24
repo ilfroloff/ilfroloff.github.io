@@ -47,14 +47,26 @@ const GA_MEASUREMENT_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
         async
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
       />
-      <script
-        id="ga-start-script"
-        data-ga-measurement-id={GA_MEASUREMENT_ID}
-        src="src/scripts/startGaScript.ts"
-      />
     </>
   )
 }
+<script
+  id="ga-start-script"
+  data-ga-measurement-id={GA_MEASUREMENT_ID}
+  is:inline
+>
+  (() => {
+    const scriptElement = document.getElementById("ga-start-script");
+    const gaMeasurementId = scriptElement?.dataset.gaMeasurementId;
+
+    if (gaMeasurementId) {
+      const dataLayer = (window.dataLayer = window.dataLayer || []);
+
+      dataLayer.push("js", new Date());
+      dataLayer.push("config", gaMeasurementId);
+    }
+  })();
+</script>
 <script is:inline>
   (() => {
     const defaultTheme =
