@@ -95,11 +95,11 @@ tags:
 свойства, которые влияют на то, как элемент вписан в страницу к свойствах изменяющим внешний вид
 элемента
 
-Пример готовой конфигурации `stylelint.config.js` с использованием `stylelint-config-recess-order`.
+Пример готовой конфигурации с использованием `stylelint-config-recess-order`.
 Применим для [`styled-components`](https://styled-components.com/)
 и [`emotion`](https://emotion.sh/):
 
-```js
+```js title="stylelint.config.cjs"
 /**
  *
  * @type {import('stylelint').Config}
