@@ -60,33 +60,33 @@ const GA_MEASUREMENT_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 
 <style is:global></style>
 
-{
-  GA_MEASUREMENT_ID && (
-    <>
-      <script
-        async
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-      />
-    </>
-  )
-}
-<script
-  id="ga-start-script"
-  data-ga-measurement-id={GA_MEASUREMENT_ID}
-  is:inline
->
-  (() => {
-    const scriptElement = document.getElementById("ga-start-script");
-    const gaMeasurementId = scriptElement?.dataset.gaMeasurementId;
+<!--{-->
+<!--  GA_MEASUREMENT_ID && (-->
+<!--    <>-->
+<!--      <script-->
+<!--        async-->
+<!--        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}-->
+<!--      />-->
+<!--    </>-->
+<!--  )-->
+<!--}-->
+<!--<script-->
+<!--  id="ga-start-script"-->
+<!--  data-ga-measurement-id={GA_MEASUREMENT_ID}-->
+<!--  is:inline-->
+<!--&gt;-->
+<!--  (() => {-->
+<!--    const scriptElement = document.getElementById("ga-start-script");-->
+<!--    const gaMeasurementId = scriptElement?.dataset.gaMeasurementId;-->
 
-    if (gaMeasurementId) {
-      const dataLayer = (window.dataLayer = window.dataLayer || []);
+<!--    if (gaMeasurementId) {-->
+<!--      const dataLayer = (window.dataLayer = window.dataLayer || []);-->
 
-      dataLayer.push("js", new Date());
-      dataLayer.push("config", gaMeasurementId);
-    }
-  })();
-</script>
+<!--      dataLayer.push("js", new Date());-->
+<!--      dataLayer.push("config", gaMeasurementId);-->
+<!--    }-->
+<!--  })();-->
+<!--</script>-->
 <script is:inline>
   (() => {
     const defaultTheme =
@@ -98,4 +98,19 @@ const GA_MEASUREMENT_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
     document.documentElement.classList.toggle("dark", defaultTheme === "dark");
     window.localStorage.setItem("theme", defaultTheme);
   })();
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-J9GB6Q63PK"
+  is:inline></script>
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+
+  gtag("config", "G-J9GB6Q63PK");
 </script>
