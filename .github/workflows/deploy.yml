@@ -13,7 +13,7 @@ permissions:
 jobs:
   build:
     env:
-      PUBLIC_GA_MEASUREMENT_ID: ${{ vars.PUBLIC_GA_MEASUREMENT_ID }}
+      PUBLIC_GA_MEASUREMENT_ID: ${{ secrets.GA_MEASUREMENT_ID }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout your repository using git
