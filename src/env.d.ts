@@ -2,7 +2,7 @@
 /// <reference types="astro/client" />
 
 interface ImportMetaEnv {
-  readonly PUBLIC_GA_MEASUREMENT_ID: string | undefined;
+  readonly PUBLIC_UMAMI_WEBSITE_ID: string | undefined;
 }
 
 interface ImportMeta {

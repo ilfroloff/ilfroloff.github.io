@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { title } = Astro.props;
-const GA_MEASUREMENT_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+const PUBLIC_UMAMI_WEBSITE_ID = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
 ---
 
 <!doctype html>
@@ -18,6 +18,15 @@ const GA_MEASUREMENT_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
     <meta name="description" content="IF Developer's blog" />
     <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
+    {
+      PUBLIC_UMAMI_WEBSITE_ID && (
+        <script
+          async
+          src="https://analytics.eu.umami.is/script.js"
+          data-website-id={PUBLIC_UMAMI_WEBSITE_ID}
+        />
+      )
+    }
   </head>
   <body class="bg-gray-100 dark:bg-[#1D1D35] text-gray-600 dark:text-[#E9EDDE]">
     <header class="container px-12 py-3 lg:px-56">
@@ -51,32 +60,5 @@ const GA_MEASUREMENT_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 
     document.documentElement.classList.toggle("dark", defaultTheme === "dark");
     window.localStorage.setItem("theme", defaultTheme);
-  })();
-</script>
-{
-  GA_MEASUREMENT_ID && (
-    <>
-      <script
-        async
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-      />
-    </>
-  )
-}
-<script
-  id="ga-start-script"
-  data-ga-measurement-id={GA_MEASUREMENT_ID}
-  is:inline
->
-  (() => {
-    const scriptElement = document.getElementById("ga-start-script");
-    const gaMeasurementId = scriptElement?.dataset.gaMeasurementId;
-
-    if (gaMeasurementId) {
-      const dataLayer = (window.dataLayer = window.dataLayer || []);
-
-      dataLayer.push("js", new Date());
-      dataLayer.push("config", gaMeasurementId);
-    }
   })();
 </script>
