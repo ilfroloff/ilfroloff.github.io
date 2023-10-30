@@ -1,0 +1,13 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "src/layouts/Layout.astro";
+import ArticleBrief from "src/components/ArticleBrief.astro";
+
+const allArticles = await getCollection("articles");
+---
+
+<Layout title="Welcome to Astro.">
+  <section class="flex flex-col gap-12">
+    {allArticles.map((article) => <ArticleBrief article={article} />)}
+  </section>
+</Layout>

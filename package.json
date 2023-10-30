@@ -1,0 +1,47 @@
+{
+  "name": "curved-conjunction",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "prepare": "husky install",
+    "lint": "npm run lint:ts && npm run lint:eslint",
+    "lint:ts": "tsc --noEmit",
+    "lint:eslint": "NODE_ENV=production eslint \"{**/*,*}.{ts,tsx,astro}\""
+  },
+  "dependencies": {
+    "@astrojs/solid-js": "3.0.2",
+    "@astrojs/tailwind": "5.0.2",
+    "@fontsource-variable/fira-code": "5.0.15",
+    "@tailwindcss/typography": "0.5.10",
+    "astro": "3.3.2",
+    "astro-expressive-code": "0.26.2",
+    "date-fns": "2.30.0",
+    "solid-js": "1.8.3",
+    "tailwindcss": "3.3.3"
+  },
+  "devDependencies": {
+    "@astrojs/ts-plugin": "1.2.0",
+    "@typescript-eslint/eslint-plugin": "6.8.0",
+    "@typescript-eslint/parser": "6.7.4",
+    "eslint": "8.50.0",
+    "eslint-config-prettier": "9.0.0",
+    "eslint-plugin-astro": "0.29.1",
+    "eslint-plugin-jsx-a11y": "6.7.1",
+    "eslint-plugin-prettier": "5.0.0",
+    "husky": "8.0.3",
+    "lint-staged": "14.0.1",
+    "prettier": "3.0.3",
+    "prettier-plugin-astro": "0.12.0"
+  },
+  "lint-staged": {
+    "*.{mjs,cjs,ts,tsx,astro}": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
+}

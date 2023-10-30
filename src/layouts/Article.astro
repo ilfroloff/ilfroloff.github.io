@@ -1,0 +1,36 @@
+---
+import { format } from "date-fns";
+import Layout from "src/layouts/Layout.astro";
+import type { ArticleData } from "src/content/config";
+import type { MarkdownLayoutProps } from "astro";
+import ArticleTags from "src/components/ArticleTags.astro";
+
+interface Props extends MarkdownLayoutProps<ArticleData> {}
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.title}>
+  <div class="flex flex-col gap-12">
+    <div class="flex flex-col gap-4">
+      <h1 class="text-4xl font-bold">{frontmatter.title}</h1>
+      <time class="text-base text-gray-400"
+        >{format(new Date(frontmatter.publishedAt), "yyyy-MM-dd")}</time
+      >
+      {frontmatter.thumbnail && <img src={frontmatter.thumbnail} />}
+    </div>
+    <article
+      class="prose max-w-none dark:prose-invert prose-p:dark:text-[#e9edde] prose-code:px-1.5 prose-code:py-1 prose-code:bg-[#272822] prose-code:text-[#e6db74] prose-code:font-normal"
+    >
+      <slot />
+    </article>
+    <ArticleTags tags={frontmatter.tags} />
+  </div>
+</Layout>
+
+<style is:global>
+  .prose code::before,
+  .prose code::after {
+    content: "" !important;
+  }
+</style>

@@ -1,0 +1,23 @@
+---
+import { format } from "date-fns";
+import type { CollectionEntry } from "astro:content";
+import ArticleTags from "src/components/ArticleTags.astro";
+
+interface Props {
+  article: CollectionEntry<"articles">;
+}
+
+const { article } = Astro.props;
+const { title, brief, publishedAt, tags } = article.data;
+---
+
+<article class="flex flex-col gap-3">
+  <a href={article.slug} class="flex flex-col flex-1 gap-3">
+    <h1 class="text-3xl font-bold">{title}</h1>
+    <time class="text-xs text-gray-400"
+      >{format(new Date(publishedAt), "yyyy-MM-dd")}</time
+    >
+    <div class="text-sm justify-end">{brief}</div>
+  </a>
+  <ArticleTags tags={tags} />
+</article>
