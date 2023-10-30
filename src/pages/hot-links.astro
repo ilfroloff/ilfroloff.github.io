@@ -1,0 +1,13 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "src/layouts/Layout.astro";
+import HotLink from "src/components/HotLink.astro";
+
+const hotLinks = await getCollection("hotlinks");
+---
+
+<Layout>
+  <section class="flex flex-col gap-12">
+    {hotLinks.map((item) => <HotLink entry={item} />)}
+  </section>
+</Layout>

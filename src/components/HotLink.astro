@@ -1,0 +1,22 @@
+---
+import { format } from "date-fns";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  entry: CollectionEntry<"hotlinks">;
+}
+
+const { entry } = Astro.props;
+const { title, url, publishedAt } = entry.data;
+const { Content } = await entry.render();
+---
+
+<article class="flex flex-col gap-3">
+  <time class="text-xs text-gray-400"
+    >{format(new Date(publishedAt), "yyyy-MM-dd")}</time
+  >
+  <div class="text-sm justify-end">
+    <a href={url} target="_blank" rel="noreferrer">{title}</a>
+  </div>
+  <Content />
+</article>
