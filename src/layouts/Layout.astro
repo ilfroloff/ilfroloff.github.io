@@ -60,57 +60,30 @@ const GA_MEASUREMENT_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 
 <style is:global></style>
 
-<!--{-->
-<!--  GA_MEASUREMENT_ID && (-->
-<!--    <>-->
-<!--      <script-->
-<!--        async-->
-<!--        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}-->
-<!--      />-->
-<!--    </>-->
-<!--  )-->
-<!--}-->
-<!--<script-->
-<!--  id="ga-start-script"-->
-<!--  data-ga-measurement-id={GA_MEASUREMENT_ID}-->
-<!--  is:inline-->
-<!--&gt;-->
-<!--  (() => {-->
-<!--    const scriptElement = document.getElementById("ga-start-script");-->
-<!--    const gaMeasurementId = scriptElement?.dataset.gaMeasurementId;-->
-
-<!--    if (gaMeasurementId) {-->
-<!--      const dataLayer = (window.dataLayer = window.dataLayer || []);-->
-
-<!--      dataLayer.push("js", new Date());-->
-<!--      dataLayer.push("config", gaMeasurementId);-->
-<!--    }-->
-<!--  })();-->
-<!--</script>-->
-<script is:inline>
-  (() => {
-    const defaultTheme =
-      window.localStorage.getItem("theme") ||
-      (window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light");
-
-    document.documentElement.classList.toggle("dark", defaultTheme === "dark");
-    window.localStorage.setItem("theme", defaultTheme);
-  })();
-</script>
-
-<!-- Google tag (gtag.js) -->
+{
+  GA_MEASUREMENT_ID && (
+    <>
+      <script
+        async
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+      />
+    </>
+  )
+}
 <script
-  async
-  src="https://www.googletagmanager.com/gtag/js?id=G-J9GB6Q63PK"
-  is:inline></script>
-<script is:inline>
-  window.dataLayer = window.dataLayer || [];
-  function gtag() {
-    dataLayer.push(arguments);
-  }
-  gtag("js", new Date());
+  id="ga-start-script"
+  data-ga-measurement-id={GA_MEASUREMENT_ID}
+  is:inline
+>
+  (() => {
+    const scriptElement = document.getElementById("ga-start-script");
+    const gaMeasurementId = scriptElement?.dataset.gaMeasurementId;
 
-  gtag("config", "G-J9GB6Q63PK");
+    if (gaMeasurementId) {
+      const dataLayer = (window.dataLayer = window.dataLayer || []);
+
+      dataLayer.push("js", new Date());
+      dataLayer.push("config", gaMeasurementId);
+    }
+  })();
 </script>
