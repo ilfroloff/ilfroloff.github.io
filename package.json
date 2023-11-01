@@ -14,6 +14,7 @@
     "lint:eslint": "NODE_ENV=production eslint \"{**/*,*}.{ts,tsx,astro}\""
   },
   "dependencies": {
+    "@astrojs/sitemap": "3.0.3",
     "@astrojs/solid-js": "3.0.2",
     "@astrojs/tailwind": "5.0.2",
     "@fontsource-variable/fira-code": "5.0.15",
@@ -43,5 +44,8 @@
       "eslint --fix",
       "git add"
     ]
+  },
+  "volta": {
+    "node": "20.9.0"
   }
 }
