@@ -6,8 +6,8 @@ import ArticleBrief from "src/components/ArticleBrief.astro";
 const allArticles = await getCollection("articles");
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout>
   <section class="flex flex-col gap-12">
-    {allArticles.map((article) => <ArticleBrief article={article} />)}
+    {allArticles.map((entry) => <ArticleBrief entry={entry} />)}
   </section>
 </Layout>

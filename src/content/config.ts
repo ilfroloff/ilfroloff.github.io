@@ -13,6 +13,17 @@ const articles = defineCollection<ArticleData>({
   type: "content",
 });
 
+export interface HotLinkData {
+  title: string;
+  url: string;
+  publishedAt: Date;
+}
+
+const hotlinks = defineCollection<HotLinkData>({
+  type: "content",
+});
+
 export const collections = {
   articles,
+  hotlinks,
 };

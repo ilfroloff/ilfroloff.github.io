@@ -3,10 +3,12 @@ import { getCollection } from "astro:content";
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 import Layout from "src/layouts/Layout.astro";
 import ArticleBrief from "src/components/ArticleBrief.astro";
+import HotLink from "../../components/HotLink.astro";
 
 export const getStaticPaths = (async () => {
   const allArticles = await getCollection("articles");
-  const tags: Array<string> = allArticles.flatMap(
+  const allHotLinks = await getCollection("hotlinks");
+  const tags: Array<string> = [...allArticles, ...allHotLinks].flatMap(
     (item) => item.data.tags ?? [],
   );
 
@@ -15,20 +17,31 @@ export const getStaticPaths = (async () => {
       tag,
     },
     props: {
-      articles: allArticles.filter((item) => item.data.tags.includes(tag)),
+      entries: [
+        ...allArticles.filter((item) => item.data.tags?.includes(tag)),
+        ...allHotLinks.filter((item) => item.data.tags?.includes(tag)),
+      ].sort((a, b) => b.data.publishedAt - a.data.publishedAt),
     },
   }));
 }) satisfies GetStaticPaths;
 
 interface Props extends InferGetStaticPropsType<typeof getStaticPaths> {}
 
-const { articles } = Astro.props;
+const { entries } = Astro.props;
 const { tag } = Astro.params;
 ---
 
 <Layout title={tag}>
-  <h1 class="text-2xl">Articles for: #{tag}</h1>
-  <section class="mt-6">
-    {articles.map((article) => <ArticleBrief article={article} />)}
+  <h1 class="text-2xl">Entries for: #{tag}</h1>
+  <section class="flex flex-col gap-6 mt-6 lg:gap-12">
+    {
+      entries.map((entry) =>
+        entry.collection === "articles" ? (
+          <ArticleBrief entry={entry} />
+        ) : (
+          <HotLink entry={entry} />
+        ),
+      )
+    }
   </section>
 </Layout>

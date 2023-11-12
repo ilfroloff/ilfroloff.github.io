@@ -1,0 +1,44 @@
+---
+import { format } from "date-fns";
+import doExpr from "src/utils/do-expr";
+import ArticleTags from "./ArticleTags.astro";
+import Link from "src/components/Link.astro";
+import MarkdownContent from "src/components/MarkdownContent.astro";
+
+interface Props {
+  title: string;
+  url: string;
+  publishedAt: Date;
+  thumbnail?: string;
+  tags?: Array<string>;
+}
+
+const { title, url, publishedAt, tags, getContent } = Astro.props;
+const isExternalSource = url.startsWith("http");
+---
+
+<article class="flex flex-col gap-3">
+  <h1 class="text-xl">
+    <Link href={url} class="font-bold">{title}</Link>
+  </h1>
+  {
+    isExternalSource &&
+      doExpr(() => {
+        const source = new URL(url).origin;
+
+        return (
+          <h5 class="text-xs italic">
+            Source:
+            <Link href={source}>{source}</Link>
+          </h5>
+        );
+      })
+  }
+  <time class="text-xs text-gray-400"
+    >{format(new Date(publishedAt), "yyyy-MM-dd")}</time
+  >
+  <MarkdownContent class="prose-sm">
+    <slot />
+  </MarkdownContent>
+  {tags && <ArticleTags tags={tags} />}
+</article>
