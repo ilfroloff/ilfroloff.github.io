@@ -1,22 +1,32 @@
 ---
 import { format } from "date-fns";
 import type { CollectionEntry } from "astro:content";
+import ArticleTags from "./ArticleTags.astro";
+import Link from "src/components/Link.astro";
 
 interface Props {
   entry: CollectionEntry<"hotlinks">;
 }
 
 const { entry } = Astro.props;
-const { title, url, publishedAt } = entry.data;
+const { title, url, publishedAt, tags } = entry.data;
+const source = new URL(url).origin;
 const { Content } = await entry.render();
 ---
 
 <article class="flex flex-col gap-3">
+  <h1>
+    <Link href={url} class="font-bold">{title}</Link>
+  </h1>
+  <h5 class="text-xs italic">
+    Source:
+    <Link href={source}>{source}</Link>
+  </h5>
   <time class="text-xs text-gray-400"
     >{format(new Date(publishedAt), "yyyy-MM-dd")}</time
   >
-  <div class="text-sm justify-end">
-    <a href={url} target="_blank" rel="noreferrer">{title}</a>
+  <div class="text-sm">
+    <Content />
   </div>
-  <Content />
+  {tags && <ArticleTags tags={tags} />}
 </article>

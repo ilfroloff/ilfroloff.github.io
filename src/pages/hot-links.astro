@@ -8,6 +8,6 @@ const hotLinks = await getCollection("hotlinks");
 
 <Layout>
   <section class="flex flex-col gap-12">
-    {hotLinks.map((item) => <HotLink entry={item} />)}
+    {hotLinks.map((entry) => <HotLink entry={entry} />)}
   </section>
 </Layout>

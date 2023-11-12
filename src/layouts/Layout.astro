@@ -1,7 +1,6 @@
 ---
 import "@fontsource-variable/fira-code";
 import Logo from "src/components/Logo.astro";
-import HeaderLink from "src/components/HeaderLink.astro";
 import ThemeToggle from "src/components/solid/ThemeToggle";
 
 interface Props {
@@ -32,7 +31,7 @@ const PUBLIC_UMAMI_WEBSITE_ID = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
     }
   </head>
   <body class="bg-gray-100 dark:bg-[#1D1D35] text-gray-600 dark:text-[#E9EDDE]">
-    <header class="container px-12 py-3 lg:px-56">
+    <header class="container px-6 py-3 lg:px-56">
       <nav class="flex items-center justify-between mx-auto">
         <div class="flex flex-1 justify-start">
           <a href="/">
@@ -41,16 +40,16 @@ const PUBLIC_UMAMI_WEBSITE_ID = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
         </div>
         <div class="flex">
           <!--bg-[#159957] dark:bg-[#003000]-->
-          <HeaderLink href="/hot-links">
+          <a href="/hot-links" class="flex text-sm font-semibold leading-6">
             <span>🔥 Hot links</span>
-          </HeaderLink>
+          </a>
         </div>
         <div class="flex flex-1 justify-end">
           <ThemeToggle client:load />
         </div>
       </nav>
     </header>
-    <main class="container p-12 lg:px-56">
+    <main class="container p-6 lg:px-56 lg:p-12">
       <slot />
     </main>
   </body>

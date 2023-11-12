@@ -1,6 +1,5 @@
 /** @type {import('prettier').Config} */
 export default {
-  plugins: ["prettier-plugin-astro"],
   overrides: [
     {
       files: "*.astro",
@@ -8,5 +7,12 @@ export default {
         parser: "astro",
       },
     },
+    {
+      files: "*.md",
+      options: {
+        proseWrap: "always",
+      },
+    },
   ],
+  plugins: ["prettier-plugin-astro"],
 };

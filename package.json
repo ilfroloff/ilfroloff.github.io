@@ -43,6 +43,10 @@
     "*.{mjs,cjs,ts,tsx,astro}": [
       "eslint --fix",
       "git add"
+    ],
+    "*.{md,mdx}": [
+      "prettier --fix",
+      "git add"
     ]
   },
   "volta": {
