@@ -24,7 +24,7 @@ AI-решениями. И написание кода разработчикам
 IDE - [VS Code](https://code.visualstudio.com/) и продуктах от
 [JetBrains](https://www.jetbrains.com/products/#type=ide-vs):
 
-### [Tabnine](https://www.tabnine.com/):
+### [Tabnine](https://www.tabnine.com/)
 
 Минималистичный и отличный помощник при написании кода. Действительно помогает
 быстрее писать код, т.к генерирует новый на основании уже написанного. Из всех
