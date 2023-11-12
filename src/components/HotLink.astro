@@ -1,8 +1,6 @@
 ---
-import { format } from "date-fns";
+import Brief from "src/components/Brief.astro";
 import type { CollectionEntry } from "astro:content";
-import ArticleTags from "./ArticleTags.astro";
-import Link from "src/components/Link.astro";
 
 interface Props {
   entry: CollectionEntry<"hotlinks">;
@@ -10,23 +8,9 @@ interface Props {
 
 const { entry } = Astro.props;
 const { title, url, publishedAt, tags } = entry.data;
-const source = new URL(url).origin;
 const { Content } = await entry.render();
 ---
 
-<article class="flex flex-col gap-3">
-  <h1>
-    <Link href={url} class="font-bold">{title}</Link>
-  </h1>
-  <h5 class="text-xs italic">
-    Source:
-    <Link href={source}>{source}</Link>
-  </h5>
-  <time class="text-xs text-gray-400"
-    >{format(new Date(publishedAt), "yyyy-MM-dd")}</time
-  >
-  <div class="text-sm">
-    <Content />
-  </div>
-  {tags && <ArticleTags tags={tags} />}
-</article>
+<Brief title={title} url={url} publishedAt={publishedAt} tags={tags}>
+  <Content />
+</Brief>

@@ -20,7 +20,7 @@ export const getStaticPaths = (async () => {
       entries: [
         ...allArticles.filter((item) => item.data.tags?.includes(tag)),
         ...allHotLinks.filter((item) => item.data.tags?.includes(tag)),
-      ].sort((a, b) => a.data.publishedAt - b.data.publishedAt),
+      ].sort((a, b) => b.data.publishedAt - a.data.publishedAt),
     },
   }));
 }) satisfies GetStaticPaths;
@@ -37,7 +37,7 @@ const { tag } = Astro.params;
     {
       entries.map((entry) =>
         entry.collection === "articles" ? (
-          <ArticleBrief article={entry} />
+          <ArticleBrief entry={entry} />
         ) : (
           <HotLink entry={entry} />
         ),
