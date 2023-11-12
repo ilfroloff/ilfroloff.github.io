@@ -1,16 +1,17 @@
 ---
 interface Props {
   href: string;
+  newTab?: boolean;
   class?: string;
 }
 
-const { href, class: className = "" } = Astro.props;
+const { href, newTab = false, class: className = "" } = Astro.props;
 ---
 
 <a
   class:list={["underline", className]}
   href={href}
-  target="_blank"
+  target={newTab ? "_blank" : "_self"}
   rel="noreferrer"
 >
   <slot />

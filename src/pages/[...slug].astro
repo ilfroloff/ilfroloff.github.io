@@ -10,7 +10,7 @@ export const getStaticPaths = (async () => {
 
   return sorted.map((article) => ({
     params: {
-      articleSlug: article.slug,
+      slug: article.slug,
     },
     props: {
       article: article,

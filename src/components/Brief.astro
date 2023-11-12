@@ -19,7 +19,7 @@ const isExternalSource = url.startsWith("http");
 
 <article class="flex flex-col gap-3">
   <h1 class="text-xl">
-    <Link href={url} class="font-bold">{title}</Link>
+    <Link href={url} newTab={isExternalSource} class="font-bold">{title}</Link>
   </h1>
   {
     isExternalSource &&
@@ -29,7 +29,9 @@ const isExternalSource = url.startsWith("http");
         return (
           <h5 class="text-xs italic">
             Source:
-            <Link href={source}>{source}</Link>
+            <Link href={source} newTab>
+              {source}
+            </Link>
           </h5>
         );
       })
