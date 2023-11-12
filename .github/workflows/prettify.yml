@@ -2,6 +2,8 @@ name: Prettify
 
 on:
   pull_request:
+    branches:
+      - main
 
 jobs:
   format:
