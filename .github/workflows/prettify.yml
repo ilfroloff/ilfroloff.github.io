@@ -2,23 +2,24 @@ name: Prettify
 
 on:
   push:
-  pull_request:
+    branches:
+      - '!main'
 
 jobs:
   format:
     runs-on: ubuntu-latest
-    name: Prettify Markdown files
+    name: Prettify
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: "20.9.0"
-      - name: Prettier
-        run: npm install && npx prettier --write **/*.md
+      - name: Prettify Markdown files
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
+        run: |
+          npm install prettier-plugin-astro
+          npx prettier --write **/*.md
+      - uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "[refactored] prettify markdown files"
+          commit_message: "[refactored] prettify files"
