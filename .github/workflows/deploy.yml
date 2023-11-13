@@ -14,6 +14,7 @@ jobs:
   build:
     environment: github-pages
     env:
+      PUBLIC_GOOGLE_SITE_VERIFICATION: ${{ vars.PUBLIC_GOOGLE_SITE_VERIFICATION }}
       PUBLIC_UMAMI_WEBSITE_ID: ${{ vars.PUBLIC_UMAMI_WEBSITE_ID }}
     runs-on: ubuntu-latest
     steps:
