@@ -18,7 +18,11 @@ const PUBLIC_UMAMI_WEBSITE_ID = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
     <meta charset="UTF-8" />
     <meta name="description" content={title} />
     <meta name="viewport" content="width=device-width" />
-    <meta name="google-site-verification" content={PUBLIC_GOOGLE_SITE_VERIFICATION} />
+    {
+      PUBLIC_GOOGLE_SITE_VERIFICATION && (
+        <meta name="google-site-verification" content={PUBLIC_GOOGLE_SITE_VERIFICATION} />
+      )
+    }
     <link rel="sitemap" href="/sitemap-index.xml" />
     <title>{title}</title>
     {
