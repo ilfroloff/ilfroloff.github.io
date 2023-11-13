@@ -2,12 +2,17 @@
 import { getCollection } from "astro:content";
 import Layout from "src/layouts/Layout.astro";
 import HotLink from "src/components/HotLink.astro";
+import arrayDateComparator from "src/utils/array-date-comparator";
 
 const hotLinks = await getCollection("hotlinks");
 ---
 
 <Layout>
   <section class="flex flex-col gap-12">
-    {hotLinks.map((entry) => <HotLink entry={entry} />)}
+    {
+      hotLinks
+        .sort(arrayDateComparator((entry) => entry.data.publishedAt))
+        .map((entry) => <HotLink entry={entry} />)
+    }
   </section>
 </Layout>

@@ -1,9 +1,10 @@
 ---
 import { getCollection } from "astro:content";
-import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import arrayDateComparator from "src/utils/array-date-comparator";
 import Layout from "src/layouts/Layout.astro";
 import ArticleBrief from "src/components/ArticleBrief.astro";
 import HotLink from "../../components/HotLink.astro";
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 
 export const getStaticPaths = (async () => {
   const allArticles = await getCollection("articles");
@@ -20,7 +21,7 @@ export const getStaticPaths = (async () => {
       entries: [
         ...allArticles.filter((item) => item.data.tags?.includes(tag)),
         ...allHotLinks.filter((item) => item.data.tags?.includes(tag)),
-      ].sort((a, b) => b.data.publishedAt - a.data.publishedAt),
+      ].sort(arrayDateComparator((item) => item.data.publishedAt)),
     },
   }));
 }) satisfies GetStaticPaths;
