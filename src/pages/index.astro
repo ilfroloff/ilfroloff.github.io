@@ -2,12 +2,17 @@
 import { getCollection } from "astro:content";
 import Layout from "src/layouts/Layout.astro";
 import ArticleBrief from "src/components/ArticleBrief.astro";
+import arrayDateComparator from "src/utils/array-date-comparator";
 
 const allArticles = await getCollection("articles");
 ---
 
 <Layout>
   <section class="flex flex-col gap-12">
-    {allArticles.map((entry) => <ArticleBrief entry={entry} />)}
+    {
+      allArticles
+        .sort(arrayDateComparator((entry) => entry.data.publishedAt))
+        .map((entry) => <ArticleBrief entry={entry} />)
+    }
   </section>
 </Layout>

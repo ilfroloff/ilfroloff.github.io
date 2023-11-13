@@ -1,11 +1,12 @@
 ---
 import { getCollection } from "astro:content";
+import arrayDateComparator from "src/utils/array-date-comparator";
 import type { InferGetStaticPropsType, GetStaticPaths } from "astro";
 
 export const getStaticPaths = (async () => {
   const allArticles = await getCollection("articles");
   const sorted = allArticles.sort(
-    (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
+    arrayDateComparator((item) => item.data.publishedAt),
   );
 
   return sorted.map((article) => ({
