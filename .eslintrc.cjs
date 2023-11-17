@@ -22,6 +22,16 @@ module.exports = {
         parser: "@typescript-eslint/parser",
         extraFileExtensions: [".astro"],
       },
+      rules: {
+        "@typescript-eslint/consistent-type-imports": "error",
+        "sort-imports": [
+          "error",
+          {
+            ignoreDeclarationSort: true,
+            allowSeparatedGroups: true,
+          },
+        ],
+      },
     },
     {
       extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],

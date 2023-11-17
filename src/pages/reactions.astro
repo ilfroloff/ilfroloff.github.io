@@ -1,18 +1,18 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "src/layouts/Layout.astro";
-import BriefHotLink from "src/components/BriefHotLink.astro";
 import arrayDateComparator from "src/utils/array-date-comparator";
+import BriefReaction from "src/components/BriefReaction.astro";
 
-const hotLinks = await getCollection("hotlinks");
+const reactions = await getCollection("reactions");
 ---
 
 <Layout>
   <section class="flex flex-col gap-12">
     {
-      hotLinks
+      reactions
         .sort(arrayDateComparator((entry) => entry.data.publishedAt))
-        .map((entry) => <BriefHotLink entry={entry} />)
+        .map((entry) => <BriefReaction entry={entry} />)
     }
   </section>
 </Layout>

@@ -1,0 +1,22 @@
+---
+import Brief from "src/components/Brief.astro";
+import type { CollectionEntry } from "astro:content";
+import { articlesConfig } from "src/content/config";
+
+interface Props {
+  entry: CollectionEntry<"articles">;
+}
+
+const { entry } = Astro.props;
+const { title, brief, publishedAt, tags } = entry.data;
+---
+
+<Brief
+  title={title}
+  url={entry.slug}
+  publishedAt={publishedAt}
+  tags={tags}
+  icon={articlesConfig.icon}
+>
+  <p>{brief}</p>
+</Brief>

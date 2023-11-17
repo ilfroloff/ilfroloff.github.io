@@ -2,13 +2,20 @@
 import "@fontsource-variable/fira-code";
 import Logo from "src/components/Logo.astro";
 import ThemeToggle from "src/components/solid/ThemeToggle";
+import HeaderLink from "src/components/HeaderLink.astro";
+import {
+  articlesConfig,
+  hotlinksConfig,
+  reactionsConfig,
+} from "src/content/config";
 
 interface Props {
   title?: string;
 }
 
 const { title } = Astro.props;
-const PUBLIC_GOOGLE_SITE_VERIFICATION = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
+const PUBLIC_GOOGLE_SITE_VERIFICATION = import.meta.env
+  .PUBLIC_GOOGLE_SITE_VERIFICATION;
 const PUBLIC_UMAMI_WEBSITE_ID = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
 ---
 
@@ -20,7 +27,10 @@ const PUBLIC_UMAMI_WEBSITE_ID = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
     <meta name="viewport" content="width=device-width" />
     {
       PUBLIC_GOOGLE_SITE_VERIFICATION && (
-        <meta name="google-site-verification" content={PUBLIC_GOOGLE_SITE_VERIFICATION} />
+        <meta
+          name="google-site-verification"
+          content={PUBLIC_GOOGLE_SITE_VERIFICATION}
+        />
       )
     }
     <link rel="sitemap" href="/sitemap-index.xml" />
@@ -43,11 +53,23 @@ const PUBLIC_UMAMI_WEBSITE_ID = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
             <Logo />
           </a>
         </div>
-        <div class="flex">
+        <div class="flex gap-8">
           <!--bg-[#159957] dark:bg-[#003000]-->
-          <a href="/hot-links" class="flex text-sm font-semibold leading-6">
-            <span>🔥 Hot links</span>
-          </a>
+          <HeaderLink
+            href="/articles"
+            icon={articlesConfig.icon}
+            label={articlesConfig.label}
+          />
+          <HeaderLink
+            href="/reactions"
+            icon={reactionsConfig.icon}
+            label={reactionsConfig.label}
+          />
+          <HeaderLink
+            href="/hot-links"
+            icon={hotlinksConfig.icon}
+            label={hotlinksConfig.label}
+          />
         </div>
         <div class="flex flex-1 justify-end">
           <ThemeToggle client:load />

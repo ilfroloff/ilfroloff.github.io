@@ -1,6 +1,7 @@
 ---
 import Brief from "src/components/Brief.astro";
 import type { CollectionEntry } from "astro:content";
+import { hotlinksConfig } from "src/content/config";
 
 interface Props {
   entry: CollectionEntry<"hotlinks">;
@@ -11,6 +12,12 @@ const { title, url, publishedAt, tags } = entry.data;
 const { Content } = await entry.render();
 ---
 
-<Brief title={title} url={url} publishedAt={publishedAt} tags={tags}>
+<Brief
+  title={title}
+  url={url}
+  publishedAt={publishedAt}
+  tags={tags}
+  icon={hotlinksConfig.icon}
+>
   <Content />
 </Brief>

@@ -7,11 +7,12 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
+    "sync": "astro sync",
     "prepare": "husky install",
     "lint": "npm run lint:ts && npm run lint:eslint",
     "lint:ts": "tsc --noEmit",
-    "lint:eslint": "NODE_ENV=production eslint \"{**/*,*}.{ts,tsx,astro}\""
+    "lint:eslint": "NODE_ENV=production eslint \"{**/*,*}.{ts,tsx,astro}\"",
+    "lint:fix": "npm run lint:eslint -- --fix && prettier --write **/*.md"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.0.3",
