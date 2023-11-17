@@ -1,4 +1,4 @@
-name: Prettify
+name: Autofix and prettify
 
 on:
   pull_request:
@@ -6,20 +6,18 @@ on:
       - main
 
 jobs:
-  format:
+  autofix-and-prettify:
     runs-on: ubuntu-latest
-    name: Prettify
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: "20.9.0"
-      - name: Prettify Markdown files
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          npm install prettier-plugin-astro
-          npx prettier --write **/*.md
+          npm install
+          npx npm run lint:fix
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "[refactored] prettify files"
