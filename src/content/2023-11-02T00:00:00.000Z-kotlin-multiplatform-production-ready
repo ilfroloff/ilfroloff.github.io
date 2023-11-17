@@ -1,0 +1,11 @@
+---
+title:  "Kotlin Multiplatform Is Stable and Production-Ready"
+url: https://blog.jetbrains.com/kotlin/2023/11/kotlin-multiplatform-stable/
+publishedAt: 2023-11-02T00:00:00.000Z
+tags:
+  - kotlin
+---
+
+В полку решений для кросс-мобильной разработки прибыло - JetBrains выпустил
+production-ready версию своего фреймворка (если это можно так назвать) на Kotlin для
+разработки на Adnroid/iOS/Web/TV одновременно. Интересно
