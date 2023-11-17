@@ -1,28 +1,29 @@
 ---
 import { getCollection } from "astro:content";
 import arrayDateComparator from "src/utils/array-date-comparator";
-import type { InferGetStaticPropsType, GetStaticPaths } from "astro";
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 
 export const getStaticPaths = (async () => {
   const allArticles = await getCollection("articles");
-  const sorted = allArticles.sort(
+  const allReactions = await getCollection("reactions");
+  const sorted = [...allArticles, ...allReactions].sort(
     arrayDateComparator((item) => item.data.publishedAt),
   );
 
-  return sorted.map((article) => ({
+  return sorted.map((entry) => ({
     params: {
-      slug: article.slug,
+      slug: entry.slug,
     },
     props: {
-      article: article,
+      entry,
     },
   }));
 }) satisfies GetStaticPaths;
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
-const { article } = Astro.props as Props;
-const { Content } = await article.render();
+const { entry } = Astro.props as Props;
+const { Content } = await entry.render();
 ---
 
 <Content />

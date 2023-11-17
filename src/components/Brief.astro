@@ -11,15 +11,19 @@ interface Props {
   publishedAt: Date;
   thumbnail?: string;
   tags?: Array<string>;
+  icon?: string;
 }
 
-const { title, url, publishedAt, tags, getContent } = Astro.props;
+const { title, url, publishedAt, tags, icon } = Astro.props;
 const isExternalSource = url.startsWith("http");
 ---
 
 <article class="flex flex-col gap-3">
   <h1 class="text-xl">
-    <Link href={url} newTab={isExternalSource} class="font-bold">{title}</Link>
+    {icon && <span class="mr-1.5">{icon}</span>}
+    <Link href={url} newTab={isExternalSource} class="font-bold">
+      {title}
+    </Link>
   </h1>
   {
     isExternalSource &&

@@ -13,6 +13,24 @@ const articles = defineCollection<ArticleData>({
   type: "content",
 });
 
+export const articlesConfig = {
+  icon: "📝",
+  label: "Articles",
+  data: articles,
+};
+
+export interface ReactionData extends ArticleData {}
+
+const reactions = defineCollection<ReactionData>({
+  type: "content",
+});
+
+export const reactionsConfig = {
+  icon: "🤔",
+  label: "Reactions",
+  data: reactions,
+};
+
 export interface HotLinkData {
   title: string;
   url: string;
@@ -23,7 +41,8 @@ const hotlinks = defineCollection<HotLinkData>({
   type: "content",
 });
 
-export const collections = {
-  articles,
-  hotlinks,
+export const hotlinksConfig = {
+  icon: "🔥",
+  label: "Hot links",
+  data: hotlinks,
 };
