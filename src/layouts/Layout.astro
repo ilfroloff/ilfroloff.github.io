@@ -7,13 +7,15 @@ import {
   articlesConfig,
   hotlinksConfig,
   reactionsConfig,
+  siteConfig,
 } from "src/content/config";
 
 interface Props {
   title?: string;
+  description?: string;
 }
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
 const PUBLIC_GOOGLE_SITE_VERIFICATION = import.meta.env
   .PUBLIC_GOOGLE_SITE_VERIFICATION;
 const PUBLIC_UMAMI_WEBSITE_ID = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
@@ -22,9 +24,13 @@ const PUBLIC_UMAMI_WEBSITE_ID = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content={title} />
-    <meta name="viewport" content="width=device-width" />
+    {title && <title>{title}</title>}
+    {
+      (description ?? title) && (
+        <meta name="description" content={description ?? title} />
+      )
+    }
+    <meta property="author" content={siteConfig.me} />
     {
       PUBLIC_GOOGLE_SITE_VERIFICATION && (
         <meta
@@ -33,8 +39,11 @@ const PUBLIC_UMAMI_WEBSITE_ID = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
         />
       )
     }
-    <link rel="sitemap" href="/sitemap-index.xml" />
-    <title>{title}</title>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <link rel="canonical" href={Astro.url} />
+    <link rel="icon" href={new URL("/favicon.ico", Astro.url)} />
+    <link rel="sitemap" href={new URL("/sitemap-index.xml", Astro.url)} />
     {
       PUBLIC_UMAMI_WEBSITE_ID && (
         <script
