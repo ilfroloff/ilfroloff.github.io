@@ -3,11 +3,12 @@ import { getCollection } from "astro:content";
 import Layout from "src/layouts/Layout.astro";
 import BriefHotLink from "src/components/BriefHotLink.astro";
 import arrayDateComparator from "src/utils/array-date-comparator";
+import { hotlinksConfig } from "src/content/config";
 
 const hotLinks = await getCollection("hotlinks");
 ---
 
-<Layout>
+<Layout title={hotlinksConfig.label} description={hotlinksConfig.description}>
   <section class="flex flex-col gap-12">
     {
       hotLinks

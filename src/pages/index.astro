@@ -3,13 +3,14 @@ import { getCollection } from "astro:content";
 import arrayDateComparator from "src/utils/array-date-comparator";
 import Layout from "src/layouts/Layout.astro";
 import BriefPerEntry from "src/components/BriefPerEntry.astro";
+import { siteConfig } from "src/content/config";
 
 const allArticles = await getCollection("articles");
 const allReactions = await getCollection("reactions");
 const allHotLinks = await getCollection("hotlinks");
 ---
 
-<Layout>
+<Layout title={siteConfig.me} description={siteConfig.description}>
   <section class="flex flex-col gap-12">
     {
       [...allArticles, ...allReactions, ...allHotLinks]

@@ -3,11 +3,12 @@ import { getCollection } from "astro:content";
 import Layout from "src/layouts/Layout.astro";
 import arrayDateComparator from "src/utils/array-date-comparator";
 import BriefReaction from "src/components/BriefReaction.astro";
+import { reactionsConfig } from "src/content/config";
 
 const reactions = await getCollection("reactions");
 ---
 
-<Layout>
+<Layout title={reactionsConfig.label} description={reactionsConfig.description}>
   <section class="flex flex-col gap-12">
     {
       reactions
