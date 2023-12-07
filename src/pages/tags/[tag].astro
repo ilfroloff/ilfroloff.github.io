@@ -7,9 +7,8 @@ import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 
 export const getStaticPaths = (async () => {
   const allArticles = await getCollection("articles");
-  const allReactions = await getCollection("reactions");
   const allHotLinks = await getCollection("hotlinks");
-  const entries = [...allArticles, ...allReactions, ...allHotLinks];
+  const entries = [...allArticles, ...allHotLinks];
   const tags: Array<string> = entries.flatMap((item) => item.data.tags ?? []);
 
   return tags.map((tag) => ({

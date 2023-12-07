@@ -3,12 +3,7 @@ import "@fontsource-variable/fira-code";
 import Logo from "src/components/Logo.astro";
 import ThemeToggle from "src/components/solid/ThemeToggle";
 import HeaderLink from "src/components/HeaderLink.astro";
-import {
-  articlesConfig,
-  hotlinksConfig,
-  reactionsConfig,
-  siteConfig,
-} from "src/content/config";
+import { articlesConfig, hotlinksConfig, siteConfig } from "src/content/config";
 
 interface Props {
   title?: string;
@@ -70,12 +65,7 @@ const PUBLIC_UMAMI_WEBSITE_ID = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
             label={articlesConfig.label}
           />
           <HeaderLink
-            href="/reactions"
-            icon={reactionsConfig.icon}
-            label={reactionsConfig.label}
-          />
-          <HeaderLink
-            href="/hot-links"
+            href="/hotlinks"
             icon={hotlinksConfig.icon}
             label={hotlinksConfig.label}
           />

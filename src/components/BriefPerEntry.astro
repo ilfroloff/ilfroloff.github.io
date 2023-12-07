@@ -1,11 +1,10 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import Reactions from "src/components/BriefReaction.astro";
-import HotLink from "src/components/BriefHotLink.astro";
-import ArticleBrief from "src/components/BriefArticle.astro";
+import BriefHotLink from "src/components/BriefHotLink.astro";
+import BriefArticle from "src/components/BriefArticle.astro";
 
 interface Props {
-  entry: CollectionEntry<"articles" | "reactions" | "hotlinks">;
+  entry: CollectionEntry<"articles" | "hotlinks">;
 }
 
 const { entry } = Astro.props;
@@ -15,13 +14,10 @@ const { entry } = Astro.props;
   (() => {
     switch (entry.collection) {
       case "articles":
-        return <ArticleBrief entry={entry} />;
-
-      case "reactions":
-        return <Reactions entry={entry} />;
+        return <BriefArticle entry={entry} />;
 
       case "hotlinks":
-        return <HotLink entry={entry} />;
+        return <BriefHotLink entry={entry} />;
     }
   })()
 }

@@ -3,18 +3,30 @@ import { format } from "date-fns";
 import Layout from "src/layouts/Layout.astro";
 import type { ArticleData } from "src/content/config";
 import type { MarkdownLayoutProps } from "astro";
+import Link from "src/components/Link.astro";
 import ArticleTags from "src/components/ArticleTags.astro";
 import MarkdownContent from "src/components/MarkdownContent.astro";
 
 interface Props extends MarkdownLayoutProps<ArticleData> {}
 
 const { frontmatter } = Astro.props;
+const source = frontmatter.source;
 ---
 
 <Layout title={frontmatter.title} description={frontmatter.brief}>
   <div class="flex flex-col gap-12">
     <div class="flex flex-col gap-4">
       <h1 class="text-4xl font-bold">{frontmatter.title}</h1>
+      {
+        source && (
+          <h4 class="text-sm italic">
+            Source:
+            <Link href={source} newTab>
+              {source}
+            </Link>
+          </h4>
+        )
+      }
       <time class="text-base text-gray-400"
         >{format(new Date(frontmatter.publishedAt), "yyyy-MM-dd")}</time
       >
