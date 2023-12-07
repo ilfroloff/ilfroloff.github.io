@@ -1,23 +1,24 @@
 ---
 import Brief from "src/components/Brief.astro";
-import type { CollectionEntry } from "astro:content";
 import { hotlinksConfig } from "src/content/config";
+import type { CollectionEntry } from "astro:content";
 
 interface Props {
   entry: CollectionEntry<"hotlinks">;
 }
 
 const { entry } = Astro.props;
-const { title, url, publishedAt, tags } = entry.data;
+const { title, source, slug, brief, publishedAt, tags } = entry.data;
 const { Content } = await entry.render();
 ---
 
 <Brief
   title={title}
-  url={url}
+  source={source}
+  slug={slug}
   publishedAt={publishedAt}
   tags={tags}
   icon={hotlinksConfig.icon}
 >
-  <Content />
+  <p>{brief ?? <Content />}</p>
 </Brief>

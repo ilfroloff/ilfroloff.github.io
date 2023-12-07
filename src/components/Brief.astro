@@ -7,38 +7,33 @@ import MarkdownContent from "src/components/MarkdownContent.astro";
 
 interface Props {
   title: string;
-  url: string;
+  source?: string;
+  slug: string;
   publishedAt: Date;
   thumbnail?: string;
   tags?: Array<string>;
   icon?: string;
 }
 
-const { title, url, publishedAt, tags, icon } = Astro.props;
-const isExternalSource = url.startsWith("http");
+const { title, source, slug, publishedAt, tags, icon } = Astro.props;
 ---
 
 <article class="flex flex-col gap-3">
   <h1 class="text-xl">
     {icon && <span class="mr-1.5">{icon}</span>}
-    <Link href={url} newTab={isExternalSource} class="font-bold">
+    <Link href={slug} class="font-bold">
       {title}
     </Link>
   </h1>
   {
-    isExternalSource &&
-      doExpr(() => {
-        const source = new URL(url).origin;
-
-        return (
-          <h5 class="text-xs italic">
-            Source:
-            <Link href={source} newTab>
-              {source}
-            </Link>
-          </h5>
-        );
-      })
+    source && (
+      <h5 class="text-xs italic">
+        Source:
+        <Link href={source} newTab>
+          {source}
+        </Link>
+      </h5>
+    )
   }
   <time class="text-xs text-gray-400"
     >{format(new Date(publishedAt), "yyyy-MM-dd")}</time

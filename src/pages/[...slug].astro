@@ -2,11 +2,12 @@
 import { getCollection } from "astro:content";
 import arrayDateComparator from "src/utils/array-date-comparator";
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import ArticleLayout from "src/layouts/ArticleLayout.astro";
 
 export const getStaticPaths = (async () => {
   const allArticles = await getCollection("articles");
-  const allReactions = await getCollection("reactions");
-  const sorted = [...allArticles, ...allReactions].sort(
+  const allHotLinks = await getCollection("hotlinks");
+  const sorted = [...allArticles, ...allHotLinks].sort(
     arrayDateComparator((item) => item.data.publishedAt),
   );
 
@@ -23,7 +24,9 @@ export const getStaticPaths = (async () => {
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { entry } = Astro.props as Props;
-const { Content } = await entry.render();
+const { Content, remarkPluginFrontmatter } = await entry.render();
 ---
 
-<Content />
+<ArticleLayout frontmatter={remarkPluginFrontmatter}>
+  <Content />
+</ArticleLayout>

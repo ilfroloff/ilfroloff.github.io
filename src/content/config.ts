@@ -4,7 +4,7 @@ export interface ArticleData {
   title: string;
   slug: string;
   publishedAt: Date;
-  brief: string;
+  brief?: string;
   thumbnail?: string;
   tags?: Array<string>;
 }
@@ -14,29 +14,14 @@ const articles = defineCollection<ArticleData>({
 });
 
 export const articlesConfig = {
-  icon: "📝",
+  icon: "📜",
   label: "Articles",
   description: "Articles were written by me",
   data: articles,
 };
 
-export interface ReactionData extends ArticleData {}
-
-const reactions = defineCollection<ReactionData>({
-  type: "content",
-});
-
-export const reactionsConfig = {
-  icon: "🤔",
-  label: "Reactions",
-  description: "My comments/reflection for interesting articles/videos",
-  data: reactions,
-};
-
-export interface HotLinkData {
-  title: string;
-  url: string;
-  publishedAt: Date;
+export interface HotLinkData extends ArticleData {
+  source: string;
 }
 
 const hotlinks = defineCollection<HotLinkData>({
@@ -46,7 +31,8 @@ const hotlinks = defineCollection<HotLinkData>({
 export const hotlinksConfig = {
   icon: "🔥",
   label: "Hot links",
-  description: "Links for articles/videos which I'm finding useful",
+  description:
+    "Links for articles/videos which I'm finding useful with my comments/reflection",
   data: hotlinks,
 };
 

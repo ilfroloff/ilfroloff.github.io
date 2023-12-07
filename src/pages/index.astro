@@ -6,14 +6,13 @@ import BriefPerEntry from "src/components/BriefPerEntry.astro";
 import { siteConfig } from "src/content/config";
 
 const allArticles = await getCollection("articles");
-const allReactions = await getCollection("reactions");
 const allHotLinks = await getCollection("hotlinks");
 ---
 
 <Layout title={siteConfig.me} description={siteConfig.description}>
   <section class="flex flex-col gap-12">
     {
-      [...allArticles, ...allReactions, ...allHotLinks]
+      [...allArticles, ...allHotLinks]
         .sort(arrayDateComparator((entry) => entry.data.publishedAt))
         .map((entry) => <BriefPerEntry entry={entry} />)
     }
