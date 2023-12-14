@@ -46,7 +46,7 @@
       "git add"
     ],
     "*.{md,mdx}": [
-      "prettier --fix",
+      "prettier --write",
       "git add"
     ]
   },
