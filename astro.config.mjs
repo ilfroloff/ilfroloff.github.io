@@ -17,6 +17,10 @@ export default defineConfig({
     }),
     sitemap(),
   ],
+  redirects: {
+    "/hot-links": "/hotlinks",
+    "/reactions": "/hotlinks",
+  },
   markdown: {
     gfm: false,
     shikiConfig: {
