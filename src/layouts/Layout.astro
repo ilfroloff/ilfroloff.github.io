@@ -13,6 +13,8 @@ interface Props {
 const { title, description } = Astro.props;
 const PUBLIC_GOOGLE_SITE_VERIFICATION = import.meta.env
   .PUBLIC_GOOGLE_SITE_VERIFICATION;
+const PUBLIC_YANDEX_SITE_VERIFICATION = import.meta.env
+  .PUBLIC_YANDEX_SITE_VERIFICATION;
 const PUBLIC_UMAMI_WEBSITE_ID = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
 ---
 
@@ -31,6 +33,14 @@ const PUBLIC_UMAMI_WEBSITE_ID = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
         <meta
           name="google-site-verification"
           content={PUBLIC_GOOGLE_SITE_VERIFICATION}
+        />
+      )
+    }
+    {
+      PUBLIC_YANDEX_SITE_VERIFICATION && (
+        <meta
+          name="yandex-verification"
+          content={PUBLIC_YANDEX_SITE_VERIFICATION}
         />
       )
     }

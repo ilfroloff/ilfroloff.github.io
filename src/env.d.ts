@@ -3,6 +3,7 @@
 
 interface ImportMetaEnv {
   readonly PUBLIC_GOOGLE_SITE_VERIFICATION: string | undefined;
+  readonly PUBLIC_YANDEX_SITE_VERIFICATION: string | undefined;
   readonly PUBLIC_UMAMI_WEBSITE_ID: string | undefined;
 }
 
