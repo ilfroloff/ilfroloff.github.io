@@ -6,7 +6,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://ilfroloff.github.io",
+  site: "https://www.if-developer.fyi",
   integrations: [
     tailwind(),
     solidJs({
