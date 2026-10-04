@@ -17,7 +17,10 @@ export default defineConfig({
     astroExpressiveCode({
       themes: ["monokai"],
     }),
-    sitemap(),
+    // snapback is a separate GitHub Pages project site served at /snapback, not an Astro route here.
+    sitemap({
+      customPages: ["https://www.if-developer.fyi/snapback/"],
+    }),
   ],
   redirects: {
     "/hot-links": "/hotlinks",
