@@ -1,9 +1,10 @@
 ---
 import "@fontsource-variable/fira-code";
+import "src/styles/global.css";
 import Logo from "src/components/Logo.astro";
 import ThemeToggle from "src/components/solid/ThemeToggle";
 import HeaderLink from "src/components/HeaderLink.astro";
-import { articlesConfig, hotlinksConfig, siteConfig } from "src/content/config";
+import { articlesConfig, hotlinksConfig, siteConfig } from "src/content.config";
 
 interface Props {
   title?: string;
@@ -22,45 +23,37 @@ const PUBLIC_UMAMI_WEBSITE_ID = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
 <html lang="en">
   <head>
     {title && <title>{title}</title>}
-    {
-      (description ?? title) && (
-        <meta name="description" content={description ?? title} />
-      )
-    }
+    {(description ?? title) && (
+      <meta name="description" content={description ?? title} />
+    )}
     <meta property="author" content={siteConfig.me} />
-    {
-      PUBLIC_GOOGLE_SITE_VERIFICATION && (
-        <meta
-          name="google-site-verification"
-          content={PUBLIC_GOOGLE_SITE_VERIFICATION}
-        />
-      )
-    }
-    {
-      PUBLIC_YANDEX_SITE_VERIFICATION && (
-        <meta
-          name="yandex-verification"
-          content={PUBLIC_YANDEX_SITE_VERIFICATION}
-        />
-      )
-    }
+    {PUBLIC_GOOGLE_SITE_VERIFICATION && (
+      <meta
+        name="google-site-verification"
+        content={PUBLIC_GOOGLE_SITE_VERIFICATION}
+      />
+    )}
+    {PUBLIC_YANDEX_SITE_VERIFICATION && (
+      <meta
+        name="yandex-verification"
+        content={PUBLIC_YANDEX_SITE_VERIFICATION}
+      />
+    )}
     <meta name="viewport" content="width=device-width" />
     <meta charset="utf-8" />
     <link rel="canonical" href={Astro.url} />
     <link rel="icon" href={new URL("/favicon.ico", Astro.url)} />
     <link rel="sitemap" href={new URL("/sitemap-index.xml", Astro.url)} />
-    {
-      PUBLIC_UMAMI_WEBSITE_ID && (
-        <script
-          async
-          src="https://analytics.eu.umami.is/script.js"
-          data-website-id={PUBLIC_UMAMI_WEBSITE_ID}
-        />
-      )
-    }
+    {PUBLIC_UMAMI_WEBSITE_ID && (
+      <script
+        async
+        src="https://analytics.eu.umami.is/script.js"
+        data-website-id={PUBLIC_UMAMI_WEBSITE_ID}
+      />
+    )}
   </head>
   <body class="bg-gray-100 dark:bg-[#1D1D35] text-gray-600 dark:text-[#E9EDDE]">
-    <header class="container px-6 py-3 lg:px-56">
+    <header class="container mx-auto px-6 py-3 lg:px-56">
       <nav class="flex items-center justify-between mx-auto">
         <div class="flex flex-1 justify-start">
           <a href="/">
@@ -85,7 +78,7 @@ const PUBLIC_UMAMI_WEBSITE_ID = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
         </div>
       </nav>
     </header>
-    <main class="container p-6 lg:px-56 lg:p-12">
+    <main class="container mx-auto p-6 lg:px-56 lg:p-12">
       <slot />
     </main>
   </body>
@@ -94,14 +87,9 @@ const PUBLIC_UMAMI_WEBSITE_ID = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
 <style is:global></style>
 
 <script is:inline>
-  (() => {
-    const defaultTheme =
-      window.localStorage.getItem("theme") ||
-      (window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light");
-
-    document.documentElement.classList.toggle("dark", defaultTheme === "dark");
-    window.localStorage.setItem("theme", defaultTheme);
-  })();
+  const stored = window.localStorage.getItem("theme");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const defaultTheme = stored || (prefersDark ? "dark" : "light");
+  document.documentElement.classList.toggle("dark", defaultTheme === "dark");
+  window.localStorage.setItem("theme", defaultTheme);
 </script>

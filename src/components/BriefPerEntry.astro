@@ -10,14 +10,12 @@ interface Props {
 const { entry } = Astro.props;
 ---
 
-{
-  (() => {
-    switch (entry.collection) {
-      case "articles":
-        return <BriefArticle entry={entry} />;
+{(() => {
+  switch (entry.collection) {
+    case "articles":
+      return <BriefArticle entry={entry} />;
 
-      case "hotlinks":
-        return <BriefHotLink entry={entry} />;
-    }
-  })()
-}
+    case "hotlinks":
+      return <BriefHotLink entry={entry} />;
+  }
+})()}

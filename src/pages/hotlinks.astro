@@ -3,17 +3,17 @@ import { getCollection } from "astro:content";
 import Layout from "src/layouts/Layout.astro";
 import BriefHotLink from "src/components/BriefHotLink.astro";
 import arrayDateComparator from "src/utils/array-date-comparator";
-import { hotlinksConfig } from "src/content/config";
+import { hotlinksConfig } from "src/content.config";
 
 const hotLinks = await getCollection("hotlinks");
 ---
 
 <Layout title={hotlinksConfig.label} description={hotlinksConfig.description}>
   <section class="flex flex-col gap-12">
-    {
-      hotLinks
-        .sort(arrayDateComparator((entry) => entry.data.publishedAt))
-        .map((entry) => <BriefHotLink entry={entry} />)
-    }
+    {hotLinks
+      .sort(arrayDateComparator((entry) => entry.data.publishedAt))
+      .map((entry) => (
+        <BriefHotLink entry={entry} />
+      ))}
   </section>
 </Layout>

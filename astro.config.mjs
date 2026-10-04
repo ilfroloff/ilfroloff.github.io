@@ -1,19 +1,21 @@
 import { defineConfig } from "astro/config";
 import astroExpressiveCode from "astro-expressive-code";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 import solidJs from "@astrojs/solid-js";
 import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.if-developer.fyi",
+  vite: {
+    plugins: [tailwindcss()],
+  },
   integrations: [
-    tailwind(),
     solidJs({
       include: ["**/solid/**/*"],
     }),
     astroExpressiveCode({
-      theme: "monokai",
+      themes: ["monokai"],
     }),
     sitemap(),
   ],
@@ -24,7 +26,10 @@ export default defineConfig({
   markdown: {
     gfm: false,
     shikiConfig: {
-      theme: "monokai",
+      themes: {
+        dark: "monokai",
+        light: "monokai",
+      },
       wrap: true,
     },
   },
