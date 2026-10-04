@@ -1,19 +1,19 @@
 ---
 import Brief from "src/components/Brief.astro";
 import type { CollectionEntry } from "astro:content";
-import { articlesConfig } from "src/content/config";
+import { articlesConfig } from "src/content.config";
 
 interface Props {
   entry: CollectionEntry<"articles">;
 }
 
 const { entry } = Astro.props;
-const { title, brief, publishedAt, tags } = entry.data;
+const { title, brief, slug, publishedAt, tags } = entry.data;
 ---
 
 <Brief
   title={title}
-  slug={entry.slug}
+  slug={slug}
   publishedAt={publishedAt}
   tags={tags}
   icon={articlesConfig.icon}

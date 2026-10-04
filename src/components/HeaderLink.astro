@@ -9,5 +9,6 @@ const { href, icon, label } = Astro.props;
 ---
 
 <a href={href} class="flex text-sm font-semibold leading-6">
-  <span>{icon}</span><span class="ml-1.5 max-sm:hidden">{label}</span>
+  <span>{icon}</span>
+  <span class="ml-1.5 max-sm:hidden">{label}</span>
 </a>

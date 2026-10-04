@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import arrayDateComparator from "src/utils/array-date-comparator";
 import Layout from "src/layouts/Layout.astro";
 import BriefPerEntry from "src/components/BriefPerEntry.astro";
-import { siteConfig } from "src/content/config";
+import { siteConfig } from "src/content.config";
 
 const allArticles = await getCollection("articles");
 const allHotLinks = await getCollection("hotlinks");
@@ -11,10 +11,10 @@ const allHotLinks = await getCollection("hotlinks");
 
 <Layout title={siteConfig.me} description={siteConfig.description}>
   <section class="flex flex-col gap-12">
-    {
-      [...allArticles, ...allHotLinks]
-        .sort(arrayDateComparator((entry) => entry.data.publishedAt))
-        .map((entry) => <BriefPerEntry entry={entry} />)
-    }
+    {[...allArticles, ...allHotLinks]
+      .sort(arrayDateComparator((entry) => entry.data.publishedAt))
+      .map((entry) => (
+        <BriefPerEntry entry={entry} />
+      ))}
   </section>
 </Layout>

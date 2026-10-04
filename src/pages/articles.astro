@@ -3,17 +3,17 @@ import { getCollection } from "astro:content";
 import Layout from "src/layouts/Layout.astro";
 import BriefArticle from "src/components/BriefArticle.astro";
 import arrayDateComparator from "src/utils/array-date-comparator";
-import { articlesConfig } from "src/content/config";
+import { articlesConfig } from "src/content.config";
 
 const articles = await getCollection("articles");
 ---
 
 <Layout title={articlesConfig.label} description={articlesConfig.description}>
   <section class="flex flex-col gap-12">
-    {
-      articles
-        .sort(arrayDateComparator((entry) => entry.data.publishedAt))
-        .map((entry) => <BriefArticle entry={entry} />)
-    }
+    {articles
+      .sort(arrayDateComparator((entry) => entry.data.publishedAt))
+      .map((entry) => (
+        <BriefArticle entry={entry} />
+      ))}
   </section>
 </Layout>

@@ -1,8 +1,9 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import arrayDateComparator from "src/utils/array-date-comparator";
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 import ArticleLayout from "src/layouts/ArticleLayout.astro";
+import type { ArticleData, HotLinkData } from "src/content.config";
 
 export const getStaticPaths = (async () => {
   const allArticles = await getCollection("articles");
@@ -13,7 +14,7 @@ export const getStaticPaths = (async () => {
 
   return sorted.map((entry) => ({
     params: {
-      slug: entry.slug,
+      slug: entry.data.slug,
     },
     props: {
       entry,
@@ -24,9 +25,10 @@ export const getStaticPaths = (async () => {
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { entry } = Astro.props as Props;
-const { Content, remarkPluginFrontmatter } = await entry.render();
+const { Content, remarkPluginFrontmatter } = await render(entry);
+const frontmatter = remarkPluginFrontmatter as ArticleData | HotLinkData;
 ---
 
-<ArticleLayout frontmatter={remarkPluginFrontmatter}>
+<ArticleLayout frontmatter={frontmatter}>
   <Content />
 </ArticleLayout>

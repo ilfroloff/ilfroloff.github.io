@@ -23,7 +23,7 @@ export const getStaticPaths = (async () => {
   }));
 }) satisfies GetStaticPaths;
 
-interface Props extends InferGetStaticPropsType<typeof getStaticPaths> {}
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { entries } = Astro.props;
 const { tag } = Astro.params;
@@ -33,6 +33,8 @@ const description = `Entries for: #${tag}`;
 <Layout title={tag} description={description}>
   <h1 class="text-2xl">{description}</h1>
   <section class="flex flex-col gap-6 mt-6 lg:gap-12">
-    {entries.map((entry) => <BriefPerEntry entry={entry} />)}
+    {entries.map((entry) => (
+      <BriefPerEntry entry={entry} />
+    ))}
   </section>
 </Layout>

@@ -1,6 +1,5 @@
 ---
 import { format } from "date-fns";
-import doExpr from "src/utils/do-expr";
 import ArticleTags from "./ArticleTags.astro";
 import Link from "src/components/Link.astro";
 import MarkdownContent from "src/components/MarkdownContent.astro";
@@ -25,19 +24,17 @@ const { title, source, slug, publishedAt, tags, icon } = Astro.props;
       {title}
     </Link>
   </h1>
-  {
-    source && (
-      <h5 class="text-xs italic">
-        Source:
-        <Link href={source} newTab>
-          {source}
-        </Link>
-      </h5>
-    )
-  }
-  <time class="text-xs text-gray-400"
-    >{format(new Date(publishedAt), "yyyy-MM-dd")}</time
-  >
+  {source && (
+    <h5 class="text-xs italic">
+      Source:
+      <Link href={source} newTab>
+        {source}
+      </Link>
+    </h5>
+  )}
+  <time class="text-xs text-gray-400">
+    {format(new Date(publishedAt), "yyyy-MM-dd")}
+  </time>
   <MarkdownContent class="prose-sm">
     <slot />
   </MarkdownContent>
