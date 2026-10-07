@@ -1,109 +1,115 @@
 ---
-title: Организовываем CSS стили
-brief:
-  Любой веб-разработчик рано или поздно сталкивается с CSS. Но речь ниже пойдет
-  не про новые свойства или новомодные CSS-приемы, а про организацию стилей в
-  вашем приложении. Возможно, термин «организация стилей» может прозвучать
-  громче, чем будет на самом деле 😁
+title: Organizing CSS Styles
+brief: >
+  Any web developer sooner or later encounters CSS. But what follows below is
+  not about new properties or trendy CSS techniques, but about organizing styles
+  in your application. Perhaps the term organizing styles might sound grander
+  than it actually is
 slug: organizing-css-styles
 publishedAt: 2023-08-17T08:52:00Z
 tags:
   - css
   - stylelint
+lang: en
 ---
 
-Любой веб-разработчик рано или поздно сталкивается с CSS. Но речь ниже пойдет не
-про новые свойства или новомодные CSS-приемы (для этого есть прекрасный
-[https://css-tricks.com](https://css-tricks.com/)), а про организацию стилей в
-вашем приложении. Возможно, термин «организация стилей» может прозвучать громче,
-чем будет на самом деле 😁
+Any web developer sooner or later encounters CSS. But what follows below is not
+about new properties or trendy CSS techniques (for that, there's the wonderful
+[https://css-tricks.com](https://css-tricks.com/)), but about organizing styles
+in your application. Perhaps the term "organizing styles" might sound grander
+than it actually is
 
-С незапамятных времен разработчики пытались превратить необъятную массу
-селекторов и CSS-файлов в лаконичную структуру. Многие из вас слышали про
-методологии организации CSS. Проговаривать и пояснять за каждую здесь не буду, а
-приведу ссылки для общего ознакомления
-([тыц1](https://css-tricks.com/methods-organize-css/),
-[тыц2](https://www.creativebloq.com/features/a-web-designers-guide-to-css-methodologies)).
-Как видно из статей, основные методологии - это BEM, OOCSS, SMACSS, Atomic CSS.
-Но хоть они и существуют сколько существует CSS, по инфографике от
-[https://stateofcss.com](https://stateofcss.com/) о них знает оптимистично не
-более 2/3 опрошенных разработчиков
-([тыц1](https://2019.stateofcss.com/technologies/methodologies/),
-[тыц2](https://2020.stateofcss.com/en-US/technologies/methodologies/)). Забавный
-момент, что CSS-методологии исключили из опроса начиная с 2021 года (или еще не
-успели добавить результаты?). Но по тренду 2019->2020 видно, что он снисходящий.
-Тема становиться менее неактуальной для разработчиков на сегодня, поэтому нет
-большого смысла углубляться и разбираться в нюансах каждой их методологий 👹
+Since time immemorial, developers have tried to turn the vast mass of selectors
+and CSS files into a concise structure. Many of you have heard about CSS
+organization methodologies. I won't go through and explain each one here, but
+I'll provide links for general overview
+([link1](https://css-tricks.com/methods-organize-css/),
+[link2](https://www.creativebloq.com/features/a-web-designers-guide-to-css-methodologies)).
+As seen from the articles, the main methodologies are BEM, OOCSS, SMACSS, and
+Atomic CSS. But despite existing for as long as CSS itself, according to the
+infographic from [https://stateofcss.com](https://stateofcss.com/),
+optimistically no more than 2/3 of surveyed developers know about them
+([link1](https://2019.stateofcss.com/technologies/methodologies/),
+[link2](https://2020.stateofcss.com/en-US/technologies/methodologies/)).
+Interestingly, CSS methodologies were excluded from the survey starting in 2021
+(or maybe the results just hadn't been added yet?). But looking at the
+2019->2020 trend, it's declining. The topic is becoming less relevant for
+developers today, so there's not much point in diving deep into the nuances of
+each methodology
 
-Но вопрос так и остается открытым - как же организовать свои стили, чтобы
-предотвращать дублирование, перекрытие стилей и по максимуму переиспользовать
-существующие? Ответ на вопрос можно грубо разделить на две категории:
+But the question remains open - how do you organize your styles to prevent
+duplication, style overrides, and maximize reuse of existing ones? The answer
+can be roughly divided into two categories:
 
-### Использовать готовые фреймворки ([тыц](https://2022.stateofcss.com/en-US/css-frameworks/) на наиболее популярные за 2022 год)
+### Use ready-made frameworks ([link](https://2022.stateofcss.com/en-US/css-frameworks/) to the most popular ones in 2022)
 
-Они избавляют от необходимости, как ни парадоксально, описывать стили в
-принципе, а следовательно нет необходимости их как-либо организовывать.
-Фактически, у вас уже есть готовый набор селекторов, которые хорошо
-комбинируются между собой и позволяют реализовывать задуманное.
+They eliminate the need, paradoxically, to describe styles at all, and
+consequently there's no need to organize them in any way. Essentially, you
+already have a ready-made set of selectors that combine well with each other and
+allow you to implement your ideas.
 
-Из минусов такого подхода - слабая гибкость и необходимость костылить решения
-задач, выходящие за рамки фреймворка. Подход отлично подходит для
-прототипирования, PoC и проектов без дизайнерских изысков
+The downside of this approach is weak flexibility and the need to hack together
+solutions for tasks that go beyond the framework. This approach is great for
+prototyping, PoC, and projects without designer-level customizations.
 
-### Автосборочные решения
+### Auto-build solutions
 
-В настоящий момент наиболее ходовой подход к автосборке и генерации CSS - это
-пре-/пост-процессоры ([тыц](https://2022.stateofcss.com/en-US/other-tools/) на
-наиболее популярные за 2022 год) и CSS-in-JS
-([тыц](https://2022.stateofcss.com/en-US/css-in-js/) на наиболее популярные за
-2022 год).
+Currently, the most common approach to auto-building and generating CSS is
+pre-/post-processors ([link](https://2022.stateofcss.com/en-US/other-tools/) to
+the most popular in 2022) and CSS-in-JS
+([link](https://2022.stateofcss.com/en-US/css-in-js/) to the most popular in
+2022).
 
-Обе опции - это CSS на максималках со всеми вытекающими, поэтому минус (но минус
-ли?) такого подхода - необходимость описания стилей и организация их хранения.
-Пришли с чего начинали пост 🙃 Но не все так плохо, ведь всё большее
-предпочтение уходит к CSS-in-JS, а его основное преимущество в изолированности
-пространства имен селекторов (решается проблема перекрытия стилей) и возможность
-использовать стили, как обычный код (решается проблема дублирования с
-добавлением переиспользования стилей).
+Both options are CSS at its maximum with all the implications, so the downside
+(but is it a downside?) of this approach is the need to describe styles and
+organize their storage. We've come full circle from where we started the post
+But it's not all bad, because there's an increasing preference for CSS-in-JS,
+and its main advantage is the isolation of the selector namespace (solving the
+style override problem) and the ability to use styles like regular code (solving
+the duplication problem with the addition of style reuse).
 
-На счет организации стилей в приложении: самая простая и мощная структура -
-держать стили максимально близко к месту их использования. Идеально - в рамках
-одной папки или в файле с компонентом. Примеры таких организаций стилей:
-[тыц1](https://blog.logrocket.com/styling-react-5-ways-style-react-apps/),
-[тыц2](https://www.taniarascia.com/react-architecture-directory-structure/),
-[тыц3](https://medium.com/@kmathy/angular-tips-and-tricks-for-css-structure-cb73fa50f0e8).
-Но проекты у всех разные, поэтому гуглите конкретно под свою ситуацию и/или
-читайте рекомендации по стилям к вашим фреймворкам
-([пример](https://nextjs.org/docs/app/building-your-application/styling) для
-next.js)
+Regarding organizing styles in an application: the simplest and most powerful
+structure is to keep styles as close as possible to where they're used. Ideally
 
-#### _Бонус: Stylelint_
+- within the same folder or in the component file. Examples of such style
+  organizations:
+  [link1](https://blog.logrocket.com/styling-react-5-ways-style-react-apps/),
+  [link2](https://www.taniarascia.com/react-architecture-directory-structure/),
+  [link3](https://medium.com/@kmathy/angular-tips-and-tricks-for-css-structure-cb73fa50f0e8).
+  But projects are all different, so google specifically for your situation
+  and/or read the style recommendations for your frameworks
+  ([example](https://nextjs.org/docs/app/building-your-application/styling) for
+  next.js)
 
-Говоря про стили, нельзя не упомянуть [Stylelint](https://stylelint.io/). Как и
-основной код, описанные стили требуют проверки на корректность и
-упорядоченность. Если с вопросом проверки проблем не возникает, т.к вполне
-достаточно использовать
+#### _Bonus: Stylelint_
+
+Speaking of styles, one can't fail to mention
+[Stylelint](https://stylelint.io/). Like the main code, the described styles
+need to be checked for correctness and orderliness. If the question of checking
+doesn't cause problems (since it's quite sufficient to use
 [`stylelint-config-standard`](https://www.npmjs.com/package/stylelint-config-standard)
-с уже готовым выстраданным набором правил, то с порядком свойств не всё так
-однозначно ведь он тревожит умы не первый десяток лет
-([тыц](https://css-tricks.com/poll-results-how-do-you-order-your-css-properties/)
-на пост за 2012 год). Но под самым популярным Grouped by type каждый понимает
-своё.
+with its already battle-tested set of rules), then with property ordering
+everything is not so straightforward, as it has been troubling minds for more
+than one decade
+([link](https://css-tricks.com/poll-results-how-do-you-order-your-css-properties/)
+to a post from 2012). But under the most popular "Grouped by type", everyone
+understands it differently.
 
-На сегодня существует несколько вариантов порядка стилей с готовой конфигурацией
-для Stylelint. Для удобства ссылки на модули приведу в инфографике на
+Today there are several variants of style ordering with ready-made
+configurations for Stylelint. For convenience, I'll provide links to the modules
+in an infographic on
 [npmtrends](https://npmtrends.com/stylelint-config-clean-order-vs-stylelint-config-concentric-order-vs-stylelint-config-idiomatic-order-vs-stylelint-config-property-sort-order-smacss-vs-stylelint-config-rational-order-vs-stylelint-config-recess-order).
-Расписывать про каждую не буду, но лично мне больше всего импанируют
+I won't describe each one, but personally I'm most drawn to
 [`stylelint-config-property-sort-order-smacss`](https://www.npmjs.com/package/stylelint-config-property-sort-order-smacss),
 [`stylelint-config-recess-order`](https://npmjs.com/package/stylelint-config-recess-order)
-и
+and
 [`stylelint-config-concentric-order`](https://www.npmjs.com/package/stylelint-config-concentric-order).
-Они отличаются незначительными деталями, но их объединяет общая идея - модель
-упорядочивания свойства. Первоочередно идут те свойства, которые влияют на то,
-как элемент вписан в страницу к свойствах изменяющим внешний вид элемента
+They differ in minor details, but they share a common idea - the model of
+property ordering. First come the properties that affect how the element is laid
+out on the page, followed by properties that change the element's appearance.
 
-Пример готовой конфигурации с использованием `stylelint-config-recess-order`.
-Применим для [`styled-components`](https://styled-components.com/) и
+Example of a ready configuration using `stylelint-config-recess-order`.
+Applicable for [`styled-components`](https://styled-components.com/) and
 [`emotion`](https://emotion.sh/):
 
 ```js title="stylelint.config.cjs"

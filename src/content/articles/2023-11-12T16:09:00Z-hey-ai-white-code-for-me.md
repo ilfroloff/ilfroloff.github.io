@@ -1,92 +1,94 @@
 ---
-title: Привет, AI! Напиши-ка за меня код
-brief:
-  Этот год не понаслышке объявлен годом AI - слишком большую волну вызвал
-  ChatGPT. Практически любая сфера жизнедеятельности человека не была обделена
-  AI-решениями и написание код в том числе. В статье попробовал собрать наиболее
-  популярные на сегодня решения, в первую очередь предлагающие бесплатный
-  вариант
+title: Hey AI! Write some code for me
+brief: >
+  This year has been unofficially declared the year of AI - ChatGPT caused too
+  big of a wave. Practically no sphere of human activity was left without AI
+  solutions, and code writing by developers is no exception. In this article, I
+  tried to collect the most popular solutions available today, primarily those
+  offering a free option.
 slug: hey-ai-white-code-for-me
 publishedAt: 2023-11-12T16:09:00Z
 tags:
   - ai
   - tools
   - refactoring
+lang: en
 ---
 
-Этот год не понаслышке объявлен годом AI - слишком большую волну интереса вызвал
-ChatGPT. Практически любая сфера жизнедеятельности человека не была обделена
-AI-решениями. И написание кода разработчиками в этом числе.
+This year has been unofficially declared the year of AI - ChatGPT caused too big
+of a wave of interest. Practically no sphere of human activity was left without
+AI solutions. And code writing by developers is among them.
 
-В интернетах можно найти множество Top-списков AI-помощников, но я собрал именно
-те, которые пробовал сам и описал субъективные ощущения от каждого. Так же, в
-первую очередь я выбирал решения, предлагающие бесплатный варианты и работающие
-в двух самых популярных на сегодня IDE -
-[VS Code](https://code.visualstudio.com/) и продуктах от
+You can find many Top lists of AI assistants on the internet, but I've collected
+specifically those that I've tried myself and described my subjective
+impressions of each. Also, I primarily chose solutions offering free options and
+working in the two most popular IDEs today -
+[VS Code](https://code.visualstudio.com/) and products from
 [JetBrains](https://www.jetbrains.com/products/#type=ide-vs):
 
 ### [Tabnine](https://www.tabnine.com/)
 
-Минималистичный и отличный помощник при написании кода. Действительно помогает
-быстрее писать код, т.к генерирует новый на основании уже написанного. Из всех
-перечисленных субьективно самый быстрый. В платной более умная автогенерация и
-возможности писать код "текстом” (автогенерация кода на основе человекопонятного
-текста).
+A minimalist and excellent coding assistant. It genuinely helps write code
+faster because it generates new code based on what you've already written. Of
+all those listed, it's subjectively the fastest. The paid version has smarter
+auto-generation and the ability to write code "in text" (auto-generating code
+from human-readable text).
 
-Проект молодой и амбициозный, но пока не самый небогатый по функциональности.
+The project is young and ambitious, but not yet the richest in functionality.
 
 ### [Codeium](https://codeium.com)
 
-По функционалу очень схож с Tabnine, может выступать как его альтернатива. По их
-заявлениями автогенерация умнее Tabnine, но это не точно.
+Very similar in functionality to Tabnine, can serve as its alternative.
+According to their claims, the auto-generation is smarter than Tabnine's, but
+that's not confirmed.
 
 ### [Sourcegraph Cody](https://sourcegraph.com/get-cody)
 
-Более прокаченная версия Tabnine/Codeium. Основная фишка - AI-чат Cody, который
-умеет генерировать код, писать автотесты, подсказывать и искать проблемы в коде,
-писать комментарии к коду.
+A more advanced version of Tabnine/Codeium. The main feature is the Cody AI
+chat, which can generate code, write automated tests, suggest and find problems
+in code, and write code comments.
 
-Субьективно более медленная автогенерация кода, но Cody это нивелирует.
+Subjectively slower code auto-generation, but Cody compensates for this.
 
 ### [Codium](https://www.codium.ai)
 
-Навороченный помощник. В бесплатной версии умеет автогенерировать код, писать
-тесты, искать ошибки и рефакторить код, генерировать коммит-сообщения на
-основании того что собираетесь закомитить. Увы, нет встроенного AI-чата.
+A feature-rich assistant. In the free version, it can auto-generate code, write
+tests, find bugs and refactor code, and generate commit messages based on what
+you're about to commit. Unfortunately, there's no built-in AI chat.
 
-Для бесплатной версии дает очень много, особенно полезен для начинающих
-программистов или изучающих новый язык.
+For a free version, it offers a lot, especially useful for beginner programmers
+or those learning a new language.
 
-### Помощники только с платной версией
+### Assistants with paid-only versions
 
-#### [GitHub Copilot](https://github.com/features/copilot) (только платная версия)
+#### [GitHub Copilot](https://github.com/features/copilot) (paid version only)
 
-Первопроходец в мире AI-помощников для разработчиков. В целом, каких-то
-существенных преимуществ Copilot не имеет, поэтому можно использовать только
-из-за «бренда». На сегодня проще пробовать бесплатные версии вышеописанных
-помощников, чем покупать данного "кота в мешке".
+The pioneer in the world of AI assistants for developers. Overall, Copilot
+doesn't have any significant advantages, so you might as well use it just for
+the "brand". Today it's easier to try the free versions of the assistants
+described above than to buy this "pig in a poke".
 
 #### [Amazon CodeWhisperer](https://aws.amazon.com/codewhisperer)
 
-Помощник от Amazon. Довольно громоздкий с неудобной установкой (требует AWS
-аккаунт, создания специального ключа доступа и привязки его к официальному
-экстеншену для IDE). Функциональностью сильно не отличается от вышеописанных
-помощников, главное отличие - сканнер кода на предмет уязвимостей.
+An assistant from Amazon. Rather cumbersome with inconvenient setup (requires an
+AWS account, creating a special access key, and linking it to the official IDE
+extension). Functionally, it doesn't differ much from the assistants described
+above; the main distinction is a code scanner for vulnerabilities.
 
 #### [JetBrains AI Assistant](https://www.jetbrains.com/help/idea/ai-assistant.html)
 
-Не так давно все IDE от JetBrains идут со встроенным AI-помощником. По
-функциональности он достаточно слабоват, т.к фактически это лишь обычный AI-чат.
-Генерировать код не умеет, только лишь помогает с автокомпиляцией и названиями
-переменных. Возможно в будущем функционал расширят.
+Not so long ago, all JetBrains IDEs come with a built-in AI assistant. In terms
+of functionality, it's quite weak, as it's essentially just a regular AI chat.
+It can't generate code, only helps with auto-completion and variable names.
+Perhaps in the future the functionality will be expanded.
 
-## Выводы
+## Conclusions
 
-Я долго не мог ответить для себя на вопрос "А нужен ли мне вообще AI-помощник?".
-Но попробовав различные варианты, осознал, что код стал писать действительно
-быстрее. Периодически, вместо гугла спрашиваешь у AI-чата и результат получаешь
-быстрее и точнее, чем серфя статьи.
+For a long time, I couldn't answer the question for myself: "Do I even need an
+AI assistant?" But after trying various options, I realized that I really do
+write code faster. Periodically, instead of Googling, you ask the AI chat and
+get results faster and more accurately than browsing articles.
 
-Сейчас я использую [Sourcegraph Cody](#sourcegraph-cody), но из-за постоянно
-меняющихся и развивающихся помощников легко могу сменить его на другой. Вы
-можете подобрать удобный именно вам, но попробовать определенно стоит.
+Currently, I use [Sourcegraph Cody](#sourcegraph-cody), but with the constantly
+changing and evolving assistants, I can easily switch to another one. You can
+find one that's convenient for you, but it's definitely worth trying.

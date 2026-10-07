@@ -114,15 +114,15 @@ None — all questions answered.
 
 **Dependencies:** Phase 1, Phase 2
 
-- [ ] Task 3.1 - Run `npm run build` and confirm no errors
-- [ ] Task 3.2 - Run `npm run lint` and confirm no errors
-- [ ] Task 3.3 - Run `astro check` and confirm no type errors
-- [ ] Task 3.4 - Run `npm run preview` and manually verify:
+- [x] Task 3.1 - Run `npm run build` and confirm no errors
+- [x] Task 3.2 - Run `npm run lint` and confirm no errors
+- [x] Task 3.3 - Run `astro check` and confirm no type errors
+- [x] Task 3.4 - Run `npm run preview` and manually verify:
   - All pages render correctly (index, articles, hotlinks, individual posts)
   - Mobile layout bug is fixed
   - Visual parity with original site (colors, fonts, spacing)
   - All internal links work
-- [ ] Task 3.5 - Verify sitemap generation still works
+- [x] Task 3.5 - Verify sitemap generation still works
 
 ## References
 

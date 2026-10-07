@@ -4,7 +4,10 @@ import "src/styles/global.css";
 import Logo from "src/components/Logo.astro";
 import ThemeToggle from "src/components/solid/ThemeToggle";
 import HeaderLink from "src/components/HeaderLink.astro";
+import LanguageSwitcher from "src/components/LanguageSwitcher.astro";
 import { articlesConfig, hotlinksConfig, siteConfig } from "src/content.config";
+import { localePrefix, type Locale } from "src/utils/i18n";
+import { getLabels } from "src/utils/i18n-labels";
 
 interface Props {
   title?: string;
@@ -12,6 +15,9 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
+const currentLocale = (Astro.currentLocale ?? "en") as Locale;
+const prefix = localePrefix(currentLocale);
+const labels = getLabels(currentLocale);
 const PUBLIC_GOOGLE_SITE_VERIFICATION = import.meta.env
   .PUBLIC_GOOGLE_SITE_VERIFICATION;
 const PUBLIC_YANDEX_SITE_VERIFICATION = import.meta.env
@@ -20,7 +26,7 @@ const PUBLIC_UMAMI_WEBSITE_ID = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={currentLocale}>
   <head>
     {title && <title>{title}</title>}
     {(description ?? title) && (
@@ -56,22 +62,23 @@ const PUBLIC_UMAMI_WEBSITE_ID = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
     <header class="container mx-auto px-6 py-3 lg:px-56">
       <nav class="flex items-center justify-between mx-auto">
         <div class="flex flex-1 justify-start">
-          <a href="/">
+          <a href={prefix || "/"}>
             <Logo />
           </a>
         </div>
         <div class="flex gap-8">
           <!--bg-[#159957] dark:bg-[#003000]-->
           <HeaderLink
-            href="/articles"
+            href={`${prefix}/articles`}
             icon={articlesConfig.icon}
-            label={articlesConfig.label}
+            label={labels.articlesLabel}
           />
           <HeaderLink
-            href="/hotlinks"
+            href={`${prefix}/hotlinks`}
             icon={hotlinksConfig.icon}
-            label={hotlinksConfig.label}
+            label={labels.hotlinksLabel}
           />
+          <LanguageSwitcher currentLocale={currentLocale} />
         </div>
         <div class="flex flex-1 justify-end">
           <ThemeToggle client:load />

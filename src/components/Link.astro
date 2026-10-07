@@ -6,12 +6,17 @@ export interface Props {
 }
 
 const { href, newTab = false, class: className = "" } = Astro.props;
-const isRelativeHref = !href.startsWith("http");
+const isExternal = href.startsWith("http");
+const resolvedHref = isExternal
+  ? href
+  : href.startsWith("/")
+    ? href
+    : `/${href}`;
 ---
 
 <a
   class:list={["underline", className]}
-  href={isRelativeHref ? `/${href}` : href}
+  href={resolvedHref}
   target={newTab ? "_blank" : "_self"}
   rel="noreferrer"
 >

@@ -3,16 +3,16 @@ import { getCollection, render } from "astro:content";
 import arrayDateComparator from "src/utils/array-date-comparator";
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 import ArticleLayout from "src/layouts/ArticleLayout.astro";
-import type { ArticleData, HotLinkData } from "src/content.config";
+import type { HotLinkData } from "src/content.config";
 
 export const getStaticPaths = (async () => {
   const allArticles = await getCollection(
     "articles",
-    (entry) => entry.data.lang === "en",
+    (entry) => entry.data.lang === "ru",
   );
   const allHotLinks = await getCollection(
     "hotlinks",
-    (entry) => entry.data.lang === "en",
+    (entry) => entry.data.lang === "ru",
   );
   const sorted = [...allArticles, ...allHotLinks].sort(
     arrayDateComparator((item) => item.data.publishedAt),
@@ -32,7 +32,7 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { entry } = Astro.props as Props;
 const { Content, remarkPluginFrontmatter } = await render(entry);
-const frontmatter = remarkPluginFrontmatter as ArticleData | HotLinkData;
+const frontmatter = remarkPluginFrontmatter as unknown as HotLinkData;
 ---
 
 <ArticleLayout frontmatter={frontmatter}>
