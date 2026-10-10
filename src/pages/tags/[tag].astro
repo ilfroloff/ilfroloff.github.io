@@ -6,12 +6,19 @@ import BriefPerEntry from "src/components/BriefPerEntry.astro";
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 
 export const getStaticPaths = (async () => {
-  const allArticles = await getCollection("articles");
-  const allHotLinks = await getCollection("hotlinks");
+  const allArticles = await getCollection(
+    "articles",
+    (entry) => entry.data.lang === "en",
+  );
+  const allHotLinks = await getCollection(
+    "hotlinks",
+    (entry) => entry.data.lang === "en",
+  );
   const entries = [...allArticles, ...allHotLinks];
   const tags: Array<string> = entries.flatMap((item) => item.data.tags ?? []);
+  const uniqueTags = [...new Set(tags)];
 
-  return tags.map((tag) => ({
+  return uniqueTags.map((tag) => ({
     params: {
       tag,
     },

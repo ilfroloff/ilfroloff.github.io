@@ -5,8 +5,14 @@ import Layout from "src/layouts/Layout.astro";
 import BriefPerEntry from "src/components/BriefPerEntry.astro";
 import { siteConfig } from "src/content.config";
 
-const allArticles = await getCollection("articles");
-const allHotLinks = await getCollection("hotlinks");
+const allArticles = await getCollection(
+  "articles",
+  (entry) => entry.data.lang === "en",
+);
+const allHotLinks = await getCollection(
+  "hotlinks",
+  (entry) => entry.data.lang === "en",
+);
 ---
 
 <Layout title={siteConfig.me} description={siteConfig.description}>
