@@ -6,7 +6,7 @@ brief: >
   solutions, and code written by developers is no exception. Here I've gathered
   the most popular AI coding assistants available today, prioritizing the ones
   with a free option.
-slug: hey-ai-white-code-for-me
+slug: ai-coding-assistants-review
 publishedAt: 2023-11-12T16:09:00Z
 tags:
   - ai

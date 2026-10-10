@@ -29,6 +29,10 @@ export default defineConfig({
   redirects: {
     "/hot-links": "/hotlinks",
     "/reactions": "/hotlinks",
+    "/webassembly-javascript": "/webassembly-javascript-ecosystem",
+    "/organizing-css-styles": "/css-architecture-organization",
+    "/hey-ai-white-code-for-me": "/ai-coding-assistants-review",
+    "/what-to-know-to-be-a-better-engineer": "/fundamentals-software-engineering",
   },
   markdown: {
     gfm: false,

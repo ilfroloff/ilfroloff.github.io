@@ -5,7 +5,7 @@ brief: >
   isn't about new properties or trendy CSS techniques — it's about organizing
   the styles in your application. The term "organizing styles" might sound
   grander than it actually is 😁
-slug: organizing-css-styles
+slug: css-architecture-organization
 publishedAt: 2023-08-17T08:52:00Z
 tags:
   - css
