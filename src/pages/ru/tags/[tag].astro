@@ -1,0 +1,47 @@
+---
+import { getCollection } from "astro:content";
+import arrayDateComparator from "src/utils/array-date-comparator";
+import Layout from "src/layouts/Layout.astro";
+import BriefPerEntry from "src/components/BriefPerEntry.astro";
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+
+export const getStaticPaths = (async () => {
+  const allArticles = await getCollection(
+    "articles",
+    (entry) => entry.data.lang === "ru",
+  );
+  const allHotLinks = await getCollection(
+    "hotlinks",
+    (entry) => entry.data.lang === "ru",
+  );
+  const entries = [...allArticles, ...allHotLinks];
+  const tags: Array<string> = entries.flatMap((item) => item.data.tags ?? []);
+  const uniqueTags = [...new Set(tags)];
+
+  return uniqueTags.map((tag) => ({
+    params: {
+      tag,
+    },
+    props: {
+      entries: entries
+        .filter((item) => item.data.tags?.includes(tag))
+        .sort(arrayDateComparator((item) => item.data.publishedAt)),
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { entries } = Astro.props;
+const { tag } = Astro.params;
+const description = `Записи для: #${tag}`;
+---
+
+<Layout title={tag} description={description}>
+  <h1 class="text-2xl">{description}</h1>
+  <section class="flex flex-col gap-6 mt-6 lg:gap-12">
+    {entries.map((entry) => (
+      <BriefPerEntry entry={entry} />
+    ))}
+  </section>
+</Layout>

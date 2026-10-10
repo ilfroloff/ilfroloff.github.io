@@ -6,8 +6,14 @@ import ArticleLayout from "src/layouts/ArticleLayout.astro";
 import type { ArticleData, HotLinkData } from "src/content.config";
 
 export const getStaticPaths = (async () => {
-  const allArticles = await getCollection("articles");
-  const allHotLinks = await getCollection("hotlinks");
+  const allArticles = await getCollection(
+    "articles",
+    (entry) => entry.data.lang === "en",
+  );
+  const allHotLinks = await getCollection(
+    "hotlinks",
+    (entry) => entry.data.lang === "en",
+  );
   const sorted = [...allArticles, ...allHotLinks].sort(
     arrayDateComparator((item) => item.data.publishedAt),
   );

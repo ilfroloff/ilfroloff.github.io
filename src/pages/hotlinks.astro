@@ -3,12 +3,16 @@ import { getCollection } from "astro:content";
 import Layout from "src/layouts/Layout.astro";
 import BriefHotLink from "src/components/BriefHotLink.astro";
 import arrayDateComparator from "src/utils/array-date-comparator";
-import { hotlinksConfig } from "src/content.config";
+import { getLabels } from "src/utils/i18n-labels";
 
-const hotLinks = await getCollection("hotlinks");
+const labels = getLabels("en");
+const hotLinks = await getCollection(
+  "hotlinks",
+  (entry) => entry.data.lang === "en",
+);
 ---
 
-<Layout title={hotlinksConfig.label} description={hotlinksConfig.description}>
+<Layout title={labels.hotlinksLabel} description={labels.hotlinksDescription}>
   <section class="flex flex-col gap-12">
     {hotLinks
       .sort(arrayDateComparator((entry) => entry.data.publishedAt))

@@ -8,6 +8,7 @@ const articleSchema = z.object({
   brief: z.string().optional(),
   thumbnail: z.string().optional(),
   tags: z.array(z.string()).optional(),
+  lang: z.string().default("ru"),
 });
 
 const hotlinkSchema = z.object({
@@ -18,15 +19,34 @@ const hotlinkSchema = z.object({
   thumbnail: z.string().optional(),
   tags: z.array(z.string()).optional(),
   source: z.string(),
+  lang: z.string().default("ru"),
 });
 
 const articles = defineCollection({
-  loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/articles" }),
+  loader: glob({
+    pattern: "**/[^_]*.md",
+    base: "./src/content/articles",
+    generateId: ({ entry, data }) => {
+      const d = data as Record<string, unknown>;
+      const lang = (d.lang as string) || "ru";
+      const slug = (d.slug as string) || entry.replace(/\.md$/, "");
+      return `${slug}-${lang}`;
+    },
+  }),
   schema: articleSchema,
 });
 
 const hotlinks = defineCollection({
-  loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/hotlinks" }),
+  loader: glob({
+    pattern: "**/[^_]*.md",
+    base: "./src/content/hotlinks",
+    generateId: ({ entry, data }) => {
+      const d = data as Record<string, unknown>;
+      const lang = (d.lang as string) || "ru";
+      const slug = (d.slug as string) || entry.replace(/\.md$/, "");
+      return `${slug}-${lang}`;
+    },
+  }),
   schema: hotlinkSchema,
 });
 

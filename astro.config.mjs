@@ -7,6 +7,13 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.if-developer.fyi",
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "ru"],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
   vite: {
     plugins: [tailwindcss()],
   },
@@ -25,6 +32,10 @@ export default defineConfig({
   redirects: {
     "/hot-links": "/hotlinks",
     "/reactions": "/hotlinks",
+    "/webassembly-javascript": "/webassembly-javascript-ecosystem",
+    "/organizing-css-styles": "/css-architecture-organization",
+    "/hey-ai-white-code-for-me": "/ai-coding-assistants-review",
+    "/what-to-know-to-be-a-better-engineer": "/fundamentals-software-engineering",
   },
   markdown: {
     gfm: false,
