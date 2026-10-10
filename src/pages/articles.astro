@@ -3,12 +3,16 @@ import { getCollection } from "astro:content";
 import Layout from "src/layouts/Layout.astro";
 import BriefArticle from "src/components/BriefArticle.astro";
 import arrayDateComparator from "src/utils/array-date-comparator";
-import { articlesConfig } from "src/content.config";
+import { getLabels } from "src/utils/i18n-labels";
 
-const articles = await getCollection("articles");
+const labels = getLabels("en");
+const articles = await getCollection(
+  "articles",
+  (entry) => entry.data.lang === "en",
+);
 ---
 
-<Layout title={articlesConfig.label} description={articlesConfig.description}>
+<Layout title={labels.articlesLabel} description={labels.articlesDescription}>
   <section class="flex flex-col gap-12">
     {articles
       .sort(arrayDateComparator((entry) => entry.data.publishedAt))

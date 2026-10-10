@@ -1,16 +1,20 @@
 ---
+import { localePrefix, type Locale } from "src/utils/i18n";
+
 interface Props {
   tags?: Array<string>;
 }
 
 const { tags } = Astro.props;
+const locale = (Astro.currentLocale ?? "en") as Locale;
+const prefix = localePrefix(locale);
 ---
 
 {tags && tags.length > 0 && (
   <span class="flex flex-wrap gap-3">
     {tags.map((item) => (
       <a
-        href={`/tags/${item}`}
+        href={`${prefix}/tags/${item}`}
         class="text-[#159957] hover:text-[#159957]/[0.9]"
       >
         #{item}

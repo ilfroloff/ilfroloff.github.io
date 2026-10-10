@@ -5,10 +5,10 @@ import BriefHotLink from "src/components/BriefHotLink.astro";
 import arrayDateComparator from "src/utils/array-date-comparator";
 import { getLabels } from "src/utils/i18n-labels";
 
-const labels = getLabels("en");
+const labels = getLabels("ru");
 const hotLinks = await getCollection(
   "hotlinks",
-  (entry) => entry.data.lang === "en",
+  (entry) => entry.data.lang === "ru",
 );
 ---
 

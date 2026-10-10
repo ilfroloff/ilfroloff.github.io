@@ -3,19 +3,21 @@ import { getCollection } from "astro:content";
 import arrayDateComparator from "src/utils/array-date-comparator";
 import Layout from "src/layouts/Layout.astro";
 import BriefPerEntry from "src/components/BriefPerEntry.astro";
-import { siteConfig } from "src/content.config";
+import { getLabels } from "src/utils/i18n-labels";
+
+const labels = getLabels("ru");
 
 const allArticles = await getCollection(
   "articles",
-  (entry) => entry.data.lang === "en",
+  (entry) => entry.data.lang === "ru",
 );
 const allHotLinks = await getCollection(
   "hotlinks",
-  (entry) => entry.data.lang === "en",
+  (entry) => entry.data.lang === "ru",
 );
 ---
 
-<Layout title={siteConfig.me} description={siteConfig.description}>
+<Layout title={labels.me} description={labels.description}>
   <section class="flex flex-col gap-12">
     {[...allArticles, ...allHotLinks]
       .sort(arrayDateComparator((entry) => entry.data.publishedAt))

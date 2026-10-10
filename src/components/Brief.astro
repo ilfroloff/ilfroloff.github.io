@@ -3,6 +3,7 @@ import { format } from "date-fns";
 import ArticleTags from "./ArticleTags.astro";
 import Link from "src/components/Link.astro";
 import MarkdownContent from "src/components/MarkdownContent.astro";
+import { localePrefix, type Locale } from "src/utils/i18n";
 
 interface Props {
   title: string;
@@ -15,12 +16,14 @@ interface Props {
 }
 
 const { title, source, slug, publishedAt, tags, icon } = Astro.props;
+const locale = (Astro.currentLocale ?? "en") as Locale;
+const prefix = localePrefix(locale);
 ---
 
 <article class="flex flex-col gap-3">
   <h1 class="text-xl">
     {icon && <span class="mr-1.5">{icon}</span>}
-    <Link href={slug} class="font-bold">
+    <Link href={`${prefix}/${slug}`} class="font-bold">
       {title}
     </Link>
   </h1>

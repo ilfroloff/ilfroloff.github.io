@@ -8,11 +8,11 @@ import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 export const getStaticPaths = (async () => {
   const allArticles = await getCollection(
     "articles",
-    (entry) => entry.data.lang === "en",
+    (entry) => entry.data.lang === "ru",
   );
   const allHotLinks = await getCollection(
     "hotlinks",
-    (entry) => entry.data.lang === "en",
+    (entry) => entry.data.lang === "ru",
   );
   const entries = [...allArticles, ...allHotLinks];
   const tags: Array<string> = entries.flatMap((item) => item.data.tags ?? []);
@@ -34,7 +34,7 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { entries } = Astro.props;
 const { tag } = Astro.params;
-const description = `Entries for: #${tag}`;
+const description = `Записи для: #${tag}`;
 ---
 
 <Layout title={tag} description={description}>

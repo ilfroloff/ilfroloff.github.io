@@ -1,23 +1,23 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "src/layouts/Layout.astro";
-import BriefHotLink from "src/components/BriefHotLink.astro";
+import BriefArticle from "src/components/BriefArticle.astro";
 import arrayDateComparator from "src/utils/array-date-comparator";
 import { getLabels } from "src/utils/i18n-labels";
 
-const labels = getLabels("en");
-const hotLinks = await getCollection(
-  "hotlinks",
-  (entry) => entry.data.lang === "en",
+const labels = getLabels("ru");
+const articles = await getCollection(
+  "articles",
+  (entry) => entry.data.lang === "ru",
 );
 ---
 
-<Layout title={labels.hotlinksLabel} description={labels.hotlinksDescription}>
+<Layout title={labels.articlesLabel} description={labels.articlesDescription}>
   <section class="flex flex-col gap-12">
-    {hotLinks
+    {articles
       .sort(arrayDateComparator((entry) => entry.data.publishedAt))
       .map((entry) => (
-        <BriefHotLink entry={entry} />
+        <BriefArticle entry={entry} />
       ))}
   </section>
 </Layout>
