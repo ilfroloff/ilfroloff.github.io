@@ -4,6 +4,7 @@ import Layout from "src/layouts/Layout.astro";
 import type { ArticleData, HotLinkData } from "src/content.config";
 import Link from "src/components/Link.astro";
 import ArticleTags from "src/components/ArticleTags.astro";
+import GiscusComments from "src/components/solid/GiscusComments";
 import MarkdownContent from "src/components/MarkdownContent.astro";
 
 interface Props {
@@ -35,6 +36,15 @@ const source = "source" in frontmatter ? frontmatter.source : undefined;
       <slot />
     </MarkdownContent>
     <ArticleTags tags={frontmatter.tags} />
+    {!("source" in frontmatter) && (
+      <GiscusComments
+        client:only="solid-js"
+        slug={frontmatter.slug}
+        lang={frontmatter.lang}
+      >
+        <div slot="fallback" class="giscus" />
+      </GiscusComments>
+    )}
   </div>
 </Layout>
 
